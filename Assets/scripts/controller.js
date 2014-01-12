@@ -6,7 +6,7 @@ private var theLeader;
 private var cars;
 private var script: life;
 public var loopStartTime: int = 0;
-//bla bla
+
 function Start () {
 	cars  = GameObject.FindGameObjectsWithTag ("car");
 	theLeader = GameObject.Find("controller").GetComponent("leader");
