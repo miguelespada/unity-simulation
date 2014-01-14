@@ -1,13 +1,16 @@
 ﻿#pragma strict
 
 var hostName: String = "http://localhost:8888/unity/";
-
+public var prueba: String;
+public var tramo: String;
 var lineRenderer: LineRenderer;
 public var vertices = Array();
 public var ready = false;
 
 function Start () {
- var hs_get = WWW(hostName + "Tramos/1_trackReal.txt");
+ var fileName = "Tramos/" + prueba + "/" + tramo + "/" + tramo + "_real" + ".txt";
+ print(hostName + fileName);
+ var hs_get = WWW(hostName + fileName);
  yield hs_get; 
  if(hs_get.error) {
     print("There was an error");

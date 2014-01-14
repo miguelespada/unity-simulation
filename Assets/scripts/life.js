@@ -120,10 +120,11 @@ function loadTrack(index){
 	lastChecked = Time.time;
  	
 	var hostName = teorico.hostName;
+	var tramoId = teorico.tramo;
    	if(index == 0)
    		cue = new Array();
    	
-	var query = hostName + "php/select.php?car="+ gameObject.name +"&tramo=0" + "&pos=" + index;
+	var query = hostName + "php/select.php?car="+ gameObject.name +"&tramo=" + tramoId + "&pos=" + index;
 	var hs_get = WWW(query);
  	yield hs_get; 
  	if(hs_get.error) 

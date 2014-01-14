@@ -21,7 +21,7 @@ function LateUpdate () {
 		}
 	}
 	if(theCamera.theCamera.name == "cameraCar" || theCamera.theCamera.name == "cameraTop"){
-			transform.rotation = Quaternion.LookRotation(Vector3.down);	
+			transform.rotation = Quaternion.LookRotation(Vector3.up);	
 			return;
 	}
 	if(theLeader.car.name == transform.parent.name){

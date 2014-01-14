@@ -34,6 +34,7 @@ function Update () {
 		classification =  Array();
 		for (var car in cars){
 			var script = car.GetComponent("life") as life;
+			if(!script) return;
 			var p = Array();
 			p[0] = car.name;
 			p[1] = script.remainingDst;

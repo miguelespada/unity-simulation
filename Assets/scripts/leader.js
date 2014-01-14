@@ -30,13 +30,20 @@ function setLeader(carName){
 
 		}
 	}
+	
+	(GameObject.Find(car.name+"/Cube").GetComponent("setMaterial") as setMaterial).setFocus(false);
+	car = cars[0];
+	(GameObject.Find(car.name+"/Cube").GetComponent("setMaterial") as setMaterial).setFocus(true);
+	updateLeader();
 }
+
 function updateLeader(){
     var hostName = teorico.hostName;
 	var query = hostName + "php/updateLeader.php?car="+ car.name;
 	var hs_get = WWW(query);
  	yield hs_get; 
 }
+
 function checkLeader(){	
 	if(lastChecked + 1 > Time.time) return;
 	lastChecked = Time.time;

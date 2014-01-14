@@ -9,7 +9,6 @@ function Start () {
 
 function Update () {
 	
-	
 	if (camera.enabled && !Input.GetKey ("c")){
 		if (Input.GetKey ("q")){
 			altura -= 1;
