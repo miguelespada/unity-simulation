@@ -8,6 +8,7 @@ public var vertices = Array();
 public var ready = false;
 
 function Start () {
+ 	
  var fileName = "Tramos/" + prueba + "/" + tramo + "/" + tramo + "_real" + ".txt";
  print(hostName + fileName);
  var hs_get = WWW(hostName + fileName);
@@ -34,4 +35,9 @@ function Start () {
   }
   ready = true;
  
+}
+
+function Update(){
+	if(Input.GetKeyDown('p'))
+		Application.LoadLevel ("montecarlo_2");
 }

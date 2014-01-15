@@ -1252,6 +1252,10 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: e44a75d0051094399b654a248f21b70a, type: 2}
+      propertyPath: cueLength
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e44a75d0051094399b654a248f21b70a, type: 2}
   m_RootGameObject: {fileID: 731612477}
