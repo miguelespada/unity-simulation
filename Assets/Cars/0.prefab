@@ -92,7 +92,7 @@ Transform:
   m_GameObject: {fileID: 100002}
   m_LocalRotation: {x: 0, y: -.707106829, z: 0, w: .707106709}
   m_LocalPosition: {x: .10389208, y: 5.73071289, z: 2.01881267e-06}
-  m_LocalScale: {x: 0, y: 4.86474705, z: 25.9453144}
+  m_LocalScale: {x: 0, y: 5, z: 20}
   m_Children: []
   m_Father: {fileID: 400000}
 --- !u!4 &400004
@@ -217,10 +217,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97483eeb992d34b799d01498135d75e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cueLength: 0
   pos: 1
+  pIndex: 0
   destination: {x: 0, y: 0, z: 0}
   speed: .100000001
+  remainingDst: 0
+  timeFromStart: 0
+  status: 
   smoothRotation: 10
+  sync: 1
+  loop: 0
+  loopStartTime: 0
+  updating: 0
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

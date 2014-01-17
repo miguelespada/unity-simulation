@@ -4,6 +4,7 @@ public var cueLength: int;
 var pos: int = 1;
 public var pIndex: int;
 	
+public var buffer: int = 10;
 public var destination:Vector3;
 var speed: float = 0.1;
 var remainingDst: int = 0;
@@ -34,9 +35,9 @@ function synchronize(){
 	sync = false;
 	yield loadTrack(0);
 	
-	if(cue.length > 0){    
-		var last = cue.length - 1;
-		pos = last - 1;   
+	if(cue.length >= 1){    
+		pos = cue.length - buffer;
+		if(pos < 1) pos = 1;  
 		if(status == "start") {
 			pos  = 0;
 		}
@@ -77,13 +78,13 @@ function setValues(cuePos){
 
 
 function updatePos(){
-	if(status == "out") return; 
 	
 	if(pos < cue.length - 1){	
 		pos += 1;
 		setValues(cue[pos]);
 	}
 	else{ 
+		 if(status == "out") return; 
 		 yield loadTrack(pIndex);	
 	 }
 }
@@ -92,7 +93,7 @@ function updatePos(){
 
 function Update () {
 	
-	if(sync)synchronize();	  
+	if(sync) synchronize();	  
 	if(loop) startLoop(loopStartTime);
 	 
 	move();
@@ -124,7 +125,7 @@ function loadTrack(index){
    	if(index == 0)
    		cue = new Array();
    	
-	var query = hostName + "php/select.php?car="+ gameObject.name +"&tramo=" + tramoId + "&pos=" + index;
+	var query = hostName + "php/select.php?car="+ gameObject.name +"&tramo=" + (parseInt(tramoId) - 1) + "&pos=" + index;
 	var hs_get = WWW(query);
  	yield hs_get; 
  	if(hs_get.error) 
@@ -138,9 +139,11 @@ function loadTrack(index){
    		 
    		 
     for (line in lines) {
+    	
     	if(line == "") break;
     	var tokens = line.Split(","[0]);
 		var pV: Array = new Array();
+		
 		pV[0] = parseInt(tokens[0]); // index
 		pV[1] = parseFloat(tokens[1]); // speed
 		pV[2] = parseInt(tokens[2]); // distance to end

@@ -19,15 +19,13 @@ function Update(){
 }
 
 function setLeader(carName){
-	if(carName == car.name) return;
 	for(var c:GameObject in cars){
 		if(c.name == carName){
 			(GameObject.Find(car.name+"/Cube").GetComponent("setMaterial") as setMaterial).setFocus(false);
 			car = c;
 			(GameObject.Find(car.name+"/Cube").GetComponent("setMaterial") as setMaterial).setFocus(true);
 			updateLeader();
-			break;
-
+			return;
 		}
 	}
 	
