@@ -12,22 +12,28 @@ var timeFromStart: int = 0;
 public var status:String;
 
 private var teorico: loadTrack;
-var smoothRotation:float = 10;
 
 public var sync:boolean = true;
 public var loop: boolean = false;
 public var loopStartTime: int;
 
 private var lastChecked: int = 0;
-
- public var updating: boolean = false; 
+public var carRotation;
+ 
+ 
+public var isEnabled: boolean = true;
+private var allMyRenderers: Array;
  
 function Start () {
+
+	allMyRenderers = GetComponentsInChildren(Renderer);
+	
 	teorico = GameObject.Find("teorico").GetComponent("loadTrack") as loadTrack;
 	while(!teorico.ready)
 		yield WaitForSeconds (1);
 	status = "start";
 	sync = true;
+
 }
 
 
@@ -92,6 +98,10 @@ function updatePos(){
 
 
 function Update () {
+
+	if(status == "start"||  status == "end" || status == "out") isEnabled = false;
+	else isEnabled = true;	
+	activeChildren(isEnabled);
 	
 	if(sync) synchronize();	  
 	if(loop) startLoop(loopStartTime);
@@ -106,28 +116,26 @@ function move(){
 	transform.position = Vector3.MoveTowards(transform.position, destination, step);
 	if(transform.position == destination) updatePos();
 	var targetDir = destination - transform.position;	
-	if(destination - transform.position != Vector3.zero){
-			var rotation = Quaternion.LookRotation(destination - transform.position);
-			transform.rotation = Quaternion.Slerp(transform.rotation, 
-								rotation, Time.deltaTime * smoothRotation);	
-	}
+	if(destination - transform.position != Vector3.zero)
+		carRotation = Quaternion.LookRotation(destination - transform.position);
+	
 }
 
 
 
 function loadTrack(index){  
 	if(lastChecked + 2 > Time.time ) return;  
-	updating = true;
+	
 	lastChecked = Time.time;
  	
 	var hostName = teorico.hostName;
 	var tramoId = teorico.tramo;
-   	if(index == 0)
-   		cue = new Array();
+   	if(index == 0) cue = new Array();
    	
-	var query = hostName + "php/select.php?car="+ gameObject.name +"&tramo=" + (parseInt(tramoId) - 1) + "&pos=" + index;
+	var query = hostName + "php/select.php?car="+ gameObject.name +"&tramo=" + tramoId + "&pos=" + index;
 	var hs_get = WWW(query);
  	yield hs_get; 
+
  	if(hs_get.error) 
     	print("There was an error loading... " + query);
 	 
@@ -153,10 +161,7 @@ function loadTrack(index){
     }
     cueLength = cue.length;
        
-	updating =false;
 }
-
-
 
 function getLoopPosByTime(t){
 	if(cue.length == 0) return 0;
@@ -164,4 +169,9 @@ function getLoopPosByTime(t){
 	for(var n = 0; n < cue.length; n++)
 		if( cue[n][3] >= t) return n;
 	return 0;
+}
+
+function activeChildren(b){
+    for (var renderer : Renderer in allMyRenderers) 
+       renderer.enabled = b ;
 }

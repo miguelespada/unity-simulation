@@ -1,64 +1,36 @@
 ﻿#pragma strict
 private var cars: Array;
-private var leader: int = 0;
+public var leader: int = 0;
 public var car: GameObject;
-
-private var lastChecked: int = 0;
-public var teorico: loadTrack;
+public var updateLeader: boolean = false;
 
 function Start () {
 	cars =  GameObject.FindGameObjectsWithTag ("car");
-	teorico = GameObject.Find("teorico").GetComponent("loadTrack") as loadTrack;
-	if(cars.length == 0)
-		return;
+	if(cars.length == 0) return;
 	car = cars[0];
+	setLeader(car);
+	leader = parseInt(car.name);
 }
 
 function Update(){
- checkLeader();
-}
-
-function setLeader(carName){
-	for(var c:GameObject in cars){
-		if(c.name == carName){
-			(GameObject.Find(car.name+"/Cube").GetComponent("setMaterial") as setMaterial).setFocus(false);
-			car = c;
-			(GameObject.Find(car.name+"/Cube").GetComponent("setMaterial") as setMaterial).setFocus(true);
-			updateLeader();
-			return;
+	if(Input.GetKeyDown("l")) 
+		updateLeader = true;
+	if(updateLeader){
+		updateLeader = false;
+		cars =  GameObject.FindGameObjectsWithTag ("car");
+		for(var c:GameObject in cars){
+			if(parseInt(c.name) == leader){
+				setLeader(c);
+				break;
+			}
 		}
 	}
-	
+
+}
+
+function setLeader(c){
 	(GameObject.Find(car.name+"/Cube").GetComponent("setMaterial") as setMaterial).setFocus(false);
-	car = cars[0];
+	car = c;
+	leader = parseInt(car.name);
 	(GameObject.Find(car.name+"/Cube").GetComponent("setMaterial") as setMaterial).setFocus(true);
-	updateLeader();
-}
-
-function updateLeader(){
-    var hostName = teorico.hostName;
-	var query = hostName + "php/updateLeader.php?car="+ car.name;
-	var hs_get = WWW(query);
- 	yield hs_get; 
-}
-
-function checkLeader(){	
-	if(lastChecked + 1 > Time.time) return;
-	lastChecked = Time.time;
-	
-	var hostName = teorico.hostName;
-	var query = hostName + "php/leader.php";
-	var hs_get = WWW(query);
- 	yield hs_get; 
- 	if(hs_get.error) 
-    	print("There was an error loading... " + query);
-	 
-    var fileContents = hs_get.text;
- 	var lines = fileContents.Split("\n"[0]); 
- 	
- 	for (line in lines) {
-    	if(line == "") break;
-		setLeader(line);
- 		break;
-  	}
 }

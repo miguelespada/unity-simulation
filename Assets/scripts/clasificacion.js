@@ -10,6 +10,10 @@ public var rankPrefab: Transform;
 function Start () {
  cars = GameObject.FindGameObjectsWithTag ("car");
  leader = GameObject.Find("controller").GetComponent("leader") as leader;  
+ buildRanks();
+
+}
+function buildRanks(){
  var i = 1;
  ranks = new Array();
  for(var c: GameObject in cars){
@@ -26,127 +30,110 @@ function Start () {
  guitexts = gameObject.GetComponentsInChildren.<GUIText>();
 }
 
-function Update () {
-	if(!leader.car) return;
-	if(Input.GetKeyDown ("k") || Input.GetKeyDown ("i") || Time.time > lastPeriod + 2){
-		lastPeriod = Time.time;
-		s = "";
-		classification =  Array();
-		for (var car in cars){
-			var script = car.GetComponent("life") as life;
-			if(!script) return;
-			var p = Array();
-			p[0] = car.name;
-			p[1] = script.remainingDst;
-			p[2] = script.speed;
-			p[3] = script.status; 
-			p[4] = script.timeFromStart; 
-			//s += car.name + "\t" + script.pos + "\n";
-			var before = Array();
-			var i : int = 0;
-			while(i < classification.length ){
-				var c: Array = classification[i];
-				if(c[1] < p[1])
-					before.push(c);
-				else
-					break;
-				i ++;
-			}
-			before.push(p);
-			while(i < classification.length ){
-				before.push(classification[i]);
-				i ++;
-			}
-			
-			for(var j = 0; j < before.length; j++)
-				classification[j] = before[j];
-			
-			
-			s = "";
-	
-			var reference = 0;
-	
-			for(var clas in classification){
-				if(clas[0] == leader.car.name)
-					reference = clas[1];
-			}
-			
-			var dst = 0;
-			i = 1;
-			for(var clas in classification){
-					
-					var r = getRankByName(clas[0]);
- 					r.localPosition = Vector3(0, -1.05 * i, 0);
-					r.Find("id").guiText.text = "" + i;
-					i += 1;
-					r.active = true;
-					
-					dst = reference - clas[1] ;
-					var dstInTime :int = 0;
-					if(clas[2] != 0)
-						dstInTime = (dst / clas[2]);
-						
-					if(clas[0] == leader.car.name){
-						
-						s += "*";
-						r.Find("marca").active = true;
-						r.Find("value").guiText.text = "-";
-						
-						if(clas[3] == "ended"){
-							s += clas[0] + "   +" + clas[4];
-							s += "s + " + clas[3] + "\n"; 
-							r.active = false;
-						}
-						else{
-							s += clas[0] + " " + clas[1] + "m "+ "\n";
-						}
-					}
-					
-					else{
-						r.Find("marca").active = false;
-					
-						r.Find("value").guiText.text = "";
-						if(clas[3] == "ended"){
-							s += clas[0] + "   +" + clas[4];
-							s += "s + " + clas[3] + "\n";
-							r.active = false; 
-						}
-						else if(clas[3] == "start"){
-							s += clas[0] + " " + clas[3] + "\n";
-							r.active = false;
-						}
-						else{
-							if(dstInTime >= 0){
-								s += clas[0] + "   +" + dstInTime; 
-									
-								r.Find("value").guiText.text = "+" + dstInTime + "s";		
-								}
-							else{
-								s += clas[0] + "   -" + Mathf.Abs(dstInTime);
-								
-								r.Find("value").guiText.text = "-" + Mathf.Abs(dstInTime) + "s";		
-							}
-							s += "s \n";
-						}
-					}	
-			}	
+function buildClassification(){
+	classification =  Array();
+	for (var car in cars){
+		var script = car.GetComponent("life") as life;
+		if(!script) return;
+		if(!script.isEnabled) continue;
+		
+		var p = Array();
+		p[0] = car.name;
+		p[1] = script.remainingDst;
+		p[2] = script.speed;
+		p[3] = script.status; 
+		p[4] = script.timeFromStart; 
+		
+		var before = Array();
+		var i : int = 0;
+		while(i < classification.length ){
+			var c: Array = classification[i];
+			if(c[1] < p[1])
+				before.push(c);
+			else
+				break;
+			i ++;
 		}
-			
-		guiText.text = s;
+		before.push(p);
+		while(i < classification.length ){
+			before.push(classification[i]);
+			i ++;
+		}
+		
+		for(var j = 0; j < before.length; j++)
+			classification[j] = before[j];
 	}
 	
+}
+
+function Update () {
+	if(!leader.car) return;
+	
 	if (Input.GetKeyDown ("k")){
-		leader.setLeader(getNext());
+		leader.leader = getNext();
+		leader.updateLeader = true;
 		lastPeriod = Time.time - 5;
 	}
 	if (Input.GetKeyDown ("i")){
-		leader.setLeader(getPrev());
+		leader.leader = getPrev();
+		leader.updateLeader = true;
 		lastPeriod = Time.time - 5;
 	}
-		
 	
 	setPosition();	
 	
+	if( Time.time < lastPeriod + 2) return;
+	buildClassification();
+	disableRanks();
+	lastPeriod = Time.time;
+				
+   // Check the focus car
+	var reference = 0;
+	for(var clas in classification){
+		if(clas[0] == leader.car.name){
+			reference = clas[1];
+			break;
+		}
+	}
+	//---- 
+		
+	i = 1;
+	for(var clas in classification){
+		var r = getRankByName(clas[0]);
+		if(!r) continue;
+		
+		r.active = true;
+		r.localPosition = Vector3(0, -1.05 * i, 0);
+		
+		r.Find("id").guiText.text = "" + i;
+		i += 1;
+				
+					
+		if(clas[0] == leader.car.name){
+			r.Find("marca").active = true;
+			r.Find("value").guiText.text = "-";			
+		}
+		else{
+			r.Find("marca").active = false;
+		
+			var dst = reference - clas[1] ;
+			var dstInTime :int = 0;
+			if(clas[2] != 0) dstInTime = (dst / clas[2]);
+			
+			if(dstInTime >= 0)
+				r.Find("value").guiText.text = "+" + dstInTime + "s";		
+			else
+				r.Find("value").guiText.text = "-" + Mathf.Abs(dstInTime) + "s";		
+			
+		}
+	
+	}
+	
+	
+	
+}
+function disableRanks(){
+	for(var r in ranks) r.active = false;
 }
 function getRankByName(carName){
 	for(var r in ranks){

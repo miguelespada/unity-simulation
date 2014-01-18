@@ -25,10 +25,12 @@ function LateUpdate () {
 			return;
 	}
 	if(theLeader.car.name == transform.parent.name){
+		//transform.localRotation = Quaternion.LookRotation(Vector3.forward);	
+
 		target = theCamera.theCamera.transform;
 		var rotation = Quaternion.LookRotation(target.position - transform.position);
 		transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * smooth);		
-	
+		
 	}
 	else{
 		var lTransform = (GameObject.Find(theLeader.car.name + "/cartelaContainer") as GameObject).transform;

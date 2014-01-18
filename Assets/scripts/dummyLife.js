@@ -20,6 +20,7 @@ public var loopStartTime: int;
 private var lastChecked: int = 0;
 
  public var updating: boolean = false; 
+ public var carRotation: Quaternion;
  
 function Start () {
 	teorico = GameObject.Find("teorico").GetComponent("loadTrack") as loadTrack;
@@ -54,12 +55,11 @@ function move(){
 	var step = speed * Time.deltaTime;
 	transform.position = Vector3.MoveTowards(transform.position, destination, step);
 	if(transform.position == destination) updatePos();
-	var targetDir = destination - transform.position;	
+	targetDir = destination - transform.position;	
 	if(destination - transform.position != Vector3.zero){
-			var rotation = Quaternion.LookRotation(destination - transform.position);
-			transform.rotation = Quaternion.Slerp(transform.rotation, 
-								rotation, Time.deltaTime * smoothRotation);	
+			carRotation = Quaternion.LookRotation(destination - transform.position);
 	}
+
 }
 
 

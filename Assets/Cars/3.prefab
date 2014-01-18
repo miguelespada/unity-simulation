@@ -11,7 +11,6 @@ GameObject:
   - 33: {fileID: 3300000}
   - 23: {fileID: 2300000}
   - 114: {fileID: 11400000}
-  - 114: {fileID: 11400010}
   m_Layer: 8
   m_Name: 3
   m_TagString: car
@@ -31,6 +30,7 @@ GameObject:
   - 23: {fileID: 2300002}
   - 114: {fileID: 11400002}
   - 114: {fileID: 11400004}
+  - 114: {fileID: 11400012}
   m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
@@ -221,16 +221,16 @@ MonoBehaviour:
   cueLength: 0
   pos: 1
   pIndex: 0
+  buffer: 10
   destination: {x: 0, y: 0, z: 0}
   speed: .100000001
   remainingDst: 0
   timeFromStart: 0
   status: 
-  smoothRotation: 3
   sync: 1
   loop: 0
   loopStartTime: 0
-  updating: 0
+  isEnabled: 1
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -277,19 +277,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   smooth: 6
---- !u!114 &11400010
+--- !u!114 &11400012
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
+  m_GameObject: {fileID: 100002}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a69efb112481443ea45e7445d6eb574, type: 3}
+  m_Script: {fileID: 11500000, guid: bd8ecd63cb7ea4c2396164d1020e2d01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teorico: {fileID: 0}
-  isEnabled: 1
+  parentScript: {fileID: 0}
+  smoothRotation: 10
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
