@@ -70,13 +70,13 @@ function Update () {
 	if(!leader.car) return;
 	
 	if (Input.GetKeyDown ("k")){
-		leader.leader = getNext();
-		leader.updateLeader = true;
+		var n:int = parseInt(getNext());
+		leader.newLeader(n);
 		lastPeriod = Time.time - 5;
 	}
 	if (Input.GetKeyDown ("i")){
-		leader.leader = getPrev();
-		leader.updateLeader = true;
+		n = parseInt(getPrev());
+		leader.newLeader(n);
 		lastPeriod = Time.time - 5;
 	}
 	
@@ -137,7 +137,7 @@ function disableRanks(){
 }
 function getRankByName(carName){
 	for(var r in ranks){
-		if(r.name.EndsWith(carName)) return r;
+		if(r.name.EndsWith("_" + carName)) return r;
 	}
 	return null;
 }

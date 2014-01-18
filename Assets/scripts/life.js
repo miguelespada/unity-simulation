@@ -67,6 +67,7 @@ function startLoop(loopStartTime){
 		if(pos == 0){
 			speed = 0;
 			status = "out";
+			isEnabled = false;
 		}
 	 }
 }
@@ -74,7 +75,12 @@ function startLoop(loopStartTime){
 function setValues(cuePos){
 	pIndex = cuePos[0];
 	destination = teorico.vertices[pIndex];
-	speed = cuePos[1];
+	
+	if(cuePos[1] > 50 ) cuePos[1] = 40;
+	if(cuePos[1] < 0 ) cuePos[1] = 10;
+	
+	speed = Mathf.Lerp(speed, cuePos[1], Time.deltaTime * 6);
+	
 	remainingDst = cuePos[2];
 	timeFromStart = cuePos[3];
 	status = cuePos[4];
