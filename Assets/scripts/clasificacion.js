@@ -22,8 +22,8 @@ function buildRanks(){
  	r.parent = transform;
  	r.localScale = Vector3(1, 1, 0);
  	r.localPosition = Vector3(0, -1.05 * i, 0);
- 	r.Find("id").guiText.text = "" + i;
- 	r.Find("number").guiText.text = c.name;
+ 	r.Find("id").guiText.text = "" + c.name;
+ 	
  	i += 1;
  	ranks.push(r);
  }
@@ -42,7 +42,7 @@ function buildClassification(){
 		p[1] = script.remainingDst;
 		p[2] = script.speed;
 		p[3] = script.status; 
-		p[4] = script.timeFromStart; 
+		p[4] = script.carName; 
 		
 		var before = Array();
 		var i : int = 0;
@@ -67,7 +67,7 @@ function buildClassification(){
 }
 
 function Update () {
-	if(!leader.car) return;
+	if(!leader) return;
 	
 	if (Input.GetKeyDown ("k")){
 		var n:int = parseInt(getNext());
@@ -105,7 +105,8 @@ function Update () {
 		r.active = true;
 		r.localPosition = Vector3(0, -1.05 * i, 0);
 		
-		r.Find("id").guiText.text = "" + i;
+		r.Find("id").guiText.text = clas[0];
+		r.Find("name").guiText.text = clas[4];
 		i += 1;
 				
 					
@@ -121,9 +122,9 @@ function Update () {
 			if(clas[2] != 0) dstInTime = (dst / clas[2]);
 			
 			if(dstInTime >= 0)
-				r.Find("value").guiText.text = "+" + dstInTime + "s";		
+				r.Find("value").guiText.text = "+" + dstInTime + " s";		
 			else
-				r.Find("value").guiText.text = "-" + Mathf.Abs(dstInTime) + "s";		
+				r.Find("value").guiText.text = "-" + Mathf.Abs(dstInTime) + " s";		
 			
 		}
 	
@@ -209,3 +210,5 @@ function setPosition(){
 			transform.position.x += 0.01;
 	}
 }
+
+

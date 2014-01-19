@@ -23,36 +23,42 @@ public var carRotation;
  
 public var isEnabled: boolean = true;
 private var allMyRenderers: Array;
+public var carName: String = "";
  
 function Start () {
 
 	allMyRenderers = GetComponentsInChildren(Renderer);
-	
 	teorico = GameObject.Find("teorico").GetComponent("loadTrack") as loadTrack;
 	while(!teorico.ready)
 		yield WaitForSeconds (1);
 	status = "start";
 	sync = true;
+	isEnabled = true;
+	
+	loadCarName();
 
 }
 
 
 function synchronize(){ 
-	sync = false;
 	yield loadTrack(0);
 	
-	if(cue.length >= 1){    
-		pos = cue.length - buffer;
-		if(pos < 1) pos = 1;  
-		if(status == "start") {
+	if(cue.length >= 1){  
+		if(cue.length < buffer) pos = 1;  
+		else pos = cue.length - buffer;
+		
+		if(status == "start") 
 			pos  = 0;
-		}
+		else
+			isEnabled = true;
+	
 		setValues(cue[pos]);	
 		transform.position = destination;  
+		sync = false;
 	}  
-	else
+	else{
 		sync = true;
-	
+	}
 	
 }
 
@@ -67,7 +73,6 @@ function startLoop(loopStartTime){
 		if(pos == 0){
 			speed = 0;
 			status = "out";
-			isEnabled = false;
 		}
 	 }
 }
@@ -76,10 +81,10 @@ function setValues(cuePos){
 	pIndex = cuePos[0];
 	destination = teorico.vertices[pIndex];
 	
-	if(cuePos[1] > 50 ) cuePos[1] = 40;
+	if(cuePos[1] > 40 ) cuePos[1] = 40;
 	if(cuePos[1] < 0 ) cuePos[1] = 10;
 	
-	speed = Mathf.Lerp(speed, cuePos[1], Time.deltaTime * 6);
+	speed = Mathf.Lerp(speed, cuePos[1], Time.deltaTime * 10);
 	
 	remainingDst = cuePos[2];
 	timeFromStart = cuePos[3];
@@ -90,7 +95,6 @@ function setValues(cuePos){
 
 
 function updatePos(){
-	
 	if(pos < cue.length - 1){	
 		pos += 1;
 		setValues(cue[pos]);
@@ -106,7 +110,7 @@ function updatePos(){
 function Update () {
 
 	if(status == "start"||  status == "end" || status == "out") isEnabled = false;
-	else isEnabled = true;	
+	
 	activeChildren(isEnabled);
 	
 	if(sync) synchronize();	  
@@ -124,7 +128,6 @@ function move(){
 	var targetDir = destination - transform.position;	
 	if(destination - transform.position != Vector3.zero)
 		carRotation = Quaternion.LookRotation(destination - transform.position);
-	
 }
 
 
@@ -151,7 +154,6 @@ function loadTrack(index){
  	if(lines.length <= 1) 
  		return; 
    		 
-   		 
     for (line in lines) {
     	
     	if(line == "") break;
@@ -170,8 +172,8 @@ function loadTrack(index){
 }
 
 function getLoopPosByTime(t){
-	if(cue.length == 0) return 0;
 	if(t == 0) return 1;
+	if(cue.length == 0) return 0;
 	for(var n = 0; n < cue.length; n++)
 		if( cue[n][3] >= t) return n;
 	return 0;
@@ -180,4 +182,19 @@ function getLoopPosByTime(t){
 function activeChildren(b){
     for (var renderer : Renderer in allMyRenderers) 
        renderer.enabled = b ;
+}
+function loadCarName(){
+	var hostName = teorico.hostName;
+	var query = hostName + "php/carName.php?id="+ gameObject.name;
+	print(query);
+	var hs_get = WWW(query);
+ 	yield hs_get; 
+ 	
+ 	if(hs_get.error) 
+    	print("There was an error loading... " + query);
+	
+    var fileContents = hs_get.text;
+ 	var lines = fileContents.Split("\n"[0]); 
+  	carName =  lines[0];
+ 	
 }

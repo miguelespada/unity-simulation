@@ -13,13 +13,23 @@ function Start () {
 }
 
 function Update(){
-    if(!car){
+    
+ 	var script = car.GetComponent("life") as life;
+	if(!script.isEnabled){
     	cars =  GameObject.FindGameObjectsWithTag ("car");
-		if(cars.length == 0) return;
-		car = cars[0];
-		setLeader(car);
-		leaderValue = parseInt(car.name);
+    	for(var c:GameObject in cars){
+			script = c.GetComponent("life") as life;
+		
+			if(script.isEnabled){
+				setLeader(c);
+				leaderValue = parseInt(car.name);
+				break;
+			}
+			
+    	}
+    	return;
     }
+    
 	if(Input.GetKeyDown("l")) 
 		updateLeader = true;
 	if(updateLeader){

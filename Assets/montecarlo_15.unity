@@ -370,7 +370,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hostName: http://localhost:8888/unity/
   prueba: montecarlo
-  tramo: 15
+  tramo: 13
   lineRenderer: {fileID: 0}
   ready: 0
 --- !u!120 &263469875
@@ -502,7 +502,6 @@ MonoBehaviour:
   loop: 0
   loopStartTime: 0
   isEnabled: 1
-  carName: 
 --- !u!23 &300058077
 Renderer:
   m_ObjectHideFlags: 0
@@ -815,7 +814,6 @@ MonoBehaviour:
   loop: 0
   loopStartTime: 0
   isEnabled: 1
-  carName: 
 --- !u!23 &453780997
 Renderer:
   m_ObjectHideFlags: 0
@@ -2381,7 +2379,6 @@ MonoBehaviour:
   loop: 0
   loopStartTime: 0
   isEnabled: 1
-  carName: 
 --- !u!23 &1133316391
 Renderer:
   m_ObjectHideFlags: 0
@@ -3300,7 +3297,6 @@ MonoBehaviour:
   loop: 0
   loopStartTime: 0
   isEnabled: 1
-  carName: 
 --- !u!23 &1553285061
 Renderer:
   m_ObjectHideFlags: 0
@@ -3467,7 +3463,6 @@ MonoBehaviour:
   loop: 0
   loopStartTime: 0
   isEnabled: 1
-  carName: 
 --- !u!23 &1633907184
 Renderer:
   m_ObjectHideFlags: 0
@@ -3779,7 +3774,6 @@ MonoBehaviour:
   loop: 0
   loopStartTime: 0
   isEnabled: 1
-  carName: 
 --- !u!23 &1812107452
 Renderer:
   m_ObjectHideFlags: 0
@@ -3876,7 +3870,6 @@ MonoBehaviour:
   loop: 0
   loopStartTime: 0
   isEnabled: 1
-  carName: 
 --- !u!23 &1994286080
 Renderer:
   m_ObjectHideFlags: 0
@@ -4118,7 +4111,6 @@ MonoBehaviour:
   loop: 0
   loopStartTime: 0
   isEnabled: 1
-  carName: 
 --- !u!23 &2063070804
 Renderer:
   m_ObjectHideFlags: 0
@@ -4231,7 +4223,6 @@ MonoBehaviour:
   loop: 0
   loopStartTime: 0
   isEnabled: 1
-  carName: 
 --- !u!23 &2083011743
 Renderer:
   m_ObjectHideFlags: 0

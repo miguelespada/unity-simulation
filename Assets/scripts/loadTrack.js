@@ -36,8 +36,3 @@ function Start () {
   ready = true;
  
 }
-
-function Update(){
-	if(Input.GetKeyDown('p'))
-		Application.LoadLevel ("montecarlo_2");
-}
