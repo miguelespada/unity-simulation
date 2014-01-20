@@ -2,14 +2,18 @@
 private var s: String;
 private var lastPeriod: int = 0;
 private var leader: leader; 
+private var controller: controller; 
 private var classification: Array; 
 public	var guitexts : GUIText[]; 
 public var isEnabled: boolean = true;
 private var ranks: Array;
 public var rankPrefab: Transform;
+public var leyenda: GUIText;
 function Start () {
  cars = GameObject.FindGameObjectsWithTag ("car");
  leader = GameObject.Find("controller").GetComponent("leader") as leader;  
+ controller = GameObject.Find("controller").GetComponent("controller") as controller;
+ leyenda = GameObject.Find("classification/p0/text").GetComponent("GUIText") as GUIText;  
  buildRanks();
 
 }
@@ -43,6 +47,7 @@ function buildClassification(){
 		p[2] = script.speed;
 		p[3] = script.status; 
 		p[4] = script.carName; 
+		p[5] = script.timeFromStart; 
 		
 		var before = Array();
 		var i : int = 0;
@@ -85,6 +90,15 @@ function Update () {
 	if( Time.time < lastPeriod + 2) return;
 	buildClassification();
 	disableRanks();
+	
+	if(controller.state == 0){
+		leyenda.text = "Tiempos";
+	}
+	else{
+		leyenda.text = "Tiempos relativos";
+	}
+	
+	
 	lastPeriod = Time.time;
 				
    // Check the focus car
@@ -107,31 +121,40 @@ function Update () {
 		
 		r.Find("id").guiText.text = clas[0];
 		r.Find("name").guiText.text = clas[4];
-		i += 1;
-				
+		i += 1;		
 					
+		var theTime = clas[5];
+		
 		if(clas[0] == leader.car.name){
 			r.Find("marca").active = true;
-			r.Find("value").guiText.text = "-";			
+			r.Find("value").guiText.text = setAbsoluteTime(theTime);
 		}
 		else{
 			r.Find("marca").active = false;
-		
-			var dst = reference - clas[1] ;
-			var dstInTime :int = 0;
-			if(clas[2] != 0) dstInTime = (dst / clas[2]);
-			
-			if(dstInTime >= 0)
-				r.Find("value").guiText.text = "+" + dstInTime + " s";		
-			else
-				r.Find("value").guiText.text = "-" + Mathf.Abs(dstInTime) + " s";		
-			
+			if(controller.state == 0)
+				r.Find("value").guiText.text = setAbsoluteTime(theTime);
+			else{
+				r.Find("value").guiText.text = setRelativeTime(reference, clas);				
+			}
 		}
 	
 	}
-	
-	
-	
+}
+
+function setAbsoluteTime(tiempo){
+	if(tiempo % 60 < 10)
+		return "" + tiempo/60 + ":0" + tiempo%60;	
+	else		
+		return "" + tiempo/60 + ":" + tiempo%60;
+}	
+function setRelativeTime(reference, clas){
+	var dst = reference - clas[1] ;
+	var dstInTime :int = 0;
+	if(clas[2] != 0) dstInTime = (dst / clas[2]);
+	if(dstInTime >= 0)
+		return "-" + dstInTime + " s";		
+	else
+		return "+" + Mathf.Abs(dstInTime) + " s";
 }
 function disableRanks(){
 	for(var r in ranks) r.active = false;

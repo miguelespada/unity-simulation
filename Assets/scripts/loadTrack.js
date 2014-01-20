@@ -3,14 +3,14 @@
 var hostName: String = "http://localhost:8888/unity/";
 public var prueba: String;
 public var tramo: String;
-var lineRenderer: LineRenderer;
+private var lineRenderer: LineRenderer;
 public var vertices = Array();
 public var ready = false;
 
 function Start () {
- 	
+ tramo = EditorApplication.currentScene.Split("_"[0])[1].Split("."[0])[0]; 
  var fileName = "Tramos/" + prueba + "/" + tramo + "/" + tramo + "_real" + ".txt";
- print(hostName + fileName);
+ print("Loading..." + hostName + fileName);
  var hs_get = WWW(hostName + fileName);
  yield hs_get; 
  if(hs_get.error) {

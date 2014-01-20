@@ -44,7 +44,8 @@ function synchronize(){
 	yield loadTrack(0);
 	
 	if(cue.length >= 1){  
-		if(cue.length < buffer) pos = 1;  
+		if(status == "ended") pos = cue.length - 1;
+		else if(cue.length < buffer) pos = 1;  
 		else pos = cue.length - buffer;
 		
 		if(status == "start") 
@@ -63,6 +64,7 @@ function synchronize(){
 }
 
 function startLoop(loopStartTime){ 
+	isEnabled = true;
 	yield loadTrack(0);
 	loop = false;
  
@@ -109,7 +111,7 @@ function updatePos(){
 
 function Update () {
 
-	if(status == "start"||  status == "end" || status == "out") isEnabled = false;
+	if(status == "start"||  status == "ended" || status == "out") isEnabled = false;
 	
 	activeChildren(isEnabled);
 	
@@ -164,7 +166,8 @@ function loadTrack(index){
 		pV[1] = parseFloat(tokens[1]); // speed
 		pV[2] = parseInt(tokens[2]); // distance to end
 		pV[3] = parseFloat(tokens[3]); // time
-		pV[4] = tokens[4];
+		pV[4] = tokens[4];//status
+    	status = pV[4];
     	cue.push(pV);
     }
     cueLength = cue.length;
@@ -176,6 +179,7 @@ function getLoopPosByTime(t){
 	if(cue.length == 0) return 0;
 	for(var n = 0; n < cue.length; n++)
 		if( cue[n][3] >= t) return n;
+	isEnabled = false;
 	return 0;
 }
 
@@ -186,7 +190,6 @@ function activeChildren(b){
 function loadCarName(){
 	var hostName = teorico.hostName;
 	var query = hostName + "php/carName.php?id="+ gameObject.name;
-	print(query);
 	var hs_get = WWW(query);
  	yield hs_get; 
  	

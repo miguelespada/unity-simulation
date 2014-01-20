@@ -6,6 +6,7 @@ private var theLeader;
 private var cars;
 private var script: life;
 public var loopStartTime: int = 0;
+public var state: int = 0;
 
 function Start () {
 	cars  = GameObject.FindGameObjectsWithTag ("car");
@@ -46,6 +47,7 @@ function LateUpdate () {
 				script = car.GetComponent("life") as life;
 				script.loop = true;
 				script.loopStartTime = dstTime;
+				state = 2;
 			}
 		}
 		leaderLoop = false;
@@ -56,6 +58,7 @@ function LateUpdate () {
 			script = car.GetComponent("life") as life;
 			script.loop = true;
 			script.loopStartTime = loopStartTime;
+			state = 1;
 		}
 		loop = false;
 	}
@@ -64,6 +67,7 @@ function LateUpdate () {
 		for (var car:GameObject in cars){
 			script = car.GetComponent("life") as life;
 			script.sync = true;
+			state = 0;
 		}
 		sync = false;
 	}
