@@ -1,5 +1,4 @@
-﻿#pragma strict
-private var cars: Array;
+﻿private var cars: Array;
 public var leaderValue: int = 0;
 public var car: GameObject;
 public var updateLeader: boolean = false;
@@ -15,9 +14,11 @@ function Start () {
 function Update(){
     
  	var script = car.GetComponent("life") as life;
-	if(!script.isEnabled){
+ 	
+	if(!car.active || !script.isEnabled){
     	cars =  GameObject.FindGameObjectsWithTag ("car");
     	for(var c:GameObject in cars){
+    		if(!c.active) continue;
 			script = c.GetComponent("life") as life;
 		
 			if(script.isEnabled){
@@ -46,7 +47,15 @@ function Update(){
 }
 
 function setLeader(c){
-	(GameObject.Find(car.name+"/Cube").GetComponent("setMaterial") as setMaterial).setFocus(false);
+	if(!car.active){
+		car.active = true;
+		(GameObject.Find(car.name+"/Cube").GetComponent("setMaterial") as setMaterial).setFocus(false);
+		car.active = false;
+	}
+	else{
+		(GameObject.Find(car.name+"/Cube").GetComponent("setMaterial") as setMaterial).setFocus(false);
+
+	}
 	car = c;
 	leaderValue = parseInt(car.name);
 	(GameObject.Find(car.name+"/Cube").GetComponent("setMaterial") as setMaterial).setFocus(true);

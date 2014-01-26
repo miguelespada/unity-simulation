@@ -86,6 +86,7 @@ GameObject:
   - 23: {fileID: 8656176}
   - 114: {fileID: 8656175}
   - 114: {fileID: 8656174}
+  - 114: {fileID: 8656179}
   m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
@@ -155,6 +156,20 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 4}
   m_Children: []
   m_Father: {fileID: 1586846788}
+--- !u!114 &8656179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400012, guid: c8d918b665cdd4333be974325cb14178,
+    type: 2}
+  m_PrefabInternal: {fileID: 500033025}
+  m_GameObject: {fileID: 8656173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd8ecd63cb7ea4c2396164d1020e2d01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentScript: {fileID: 0}
+  smoothRotation: 10
 --- !u!1 &12234636
 GameObject:
   m_ObjectHideFlags: 0
@@ -166,7 +181,6 @@ GameObject:
   - 33: {fileID: 12234641}
   - 23: {fileID: 12234640}
   - 114: {fileID: 12234639}
-  - 114: {fileID: 12234638}
   m_Layer: 8
   m_Name: 7
   m_TagString: car
@@ -187,20 +201,6 @@ Transform:
   - {fileID: 666026988}
   - {fileID: 168337483}
   m_Father: {fileID: 0}
---- !u!114 &12234638
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400010, guid: c8d918b665cdd4333be974325cb14178,
-    type: 2}
-  m_PrefabInternal: {fileID: 172011104}
-  m_GameObject: {fileID: 12234636}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a69efb112481443ea45e7445d6eb574, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  teorico: {fileID: 0}
-  isEnabled: 1
 --- !u!114 &12234639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,16 +216,18 @@ MonoBehaviour:
   cueLength: 0
   pos: 1
   pIndex: 0
+  buffer: 10
   destination: {x: 0, y: 0, z: 0}
   speed: .100000001
   remainingDst: 0
   timeFromStart: 0
   status: 
-  smoothRotation: 3
   sync: 1
   loop: 0
   loopStartTime: 0
-  updating: 0
+  isEnabled: 1
+  carName: 
+  isFinished: 0
 --- !u!23 &12234640
 Renderer:
   m_ObjectHideFlags: 0
@@ -280,7 +282,7 @@ Transform:
   m_GameObject: {fileID: 27575912}
   m_LocalRotation: {x: 0, y: -.707106829, z: 0, w: .707106709}
   m_LocalPosition: {x: .10389208, y: 5.73071289, z: 2.01881267e-06}
-  m_LocalScale: {x: 0, y: 4.86474705, z: 25.9453144}
+  m_LocalScale: {x: 0, y: 5, z: 20}
   m_Children: []
   m_Father: {fileID: 1098565739}
 --- !u!114 &27575914
@@ -347,6 +349,7 @@ GameObject:
   - 23: {fileID: 27790226}
   - 114: {fileID: 27790225}
   - 114: {fileID: 27790224}
+  - 114: {fileID: 27790229}
   m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
@@ -416,6 +419,20 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 4}
   m_Children: []
   m_Father: {fileID: 399453507}
+--- !u!114 &27790229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400012, guid: c8d918b665cdd4333be974325cb14178,
+    type: 2}
+  m_PrefabInternal: {fileID: 753961393}
+  m_GameObject: {fileID: 27790223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd8ecd63cb7ea4c2396164d1020e2d01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentScript: {fileID: 0}
+  smoothRotation: 10
 --- !u!1001 &32754842
 Prefab:
   m_ObjectHideFlags: 0
@@ -471,7 +488,6 @@ GameObject:
   - 33: {fileID: 56918234}
   - 23: {fileID: 56918233}
   - 114: {fileID: 56918232}
-  - 114: {fileID: 56918231}
   m_Layer: 8
   m_Name: 12
   m_TagString: car
@@ -492,20 +508,6 @@ Transform:
   - {fileID: 2094327724}
   - {fileID: 1947821257}
   m_Father: {fileID: 0}
---- !u!114 &56918231
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400010, guid: c8d918b665cdd4333be974325cb14178,
-    type: 2}
-  m_PrefabInternal: {fileID: 1672133152}
-  m_GameObject: {fileID: 56918229}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a69efb112481443ea45e7445d6eb574, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  teorico: {fileID: 0}
-  isEnabled: 1
 --- !u!114 &56918232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -521,16 +523,18 @@ MonoBehaviour:
   cueLength: 0
   pos: 1
   pIndex: 0
+  buffer: 10
   destination: {x: 0, y: 0, z: 0}
   speed: .100000001
   remainingDst: 0
   timeFromStart: 0
   status: 
-  smoothRotation: 3
   sync: 1
   loop: 0
   loopStartTime: 0
-  updating: 0
+  isEnabled: 1
+  carName: 
+  isFinished: 0
 --- !u!23 &56918233
 Renderer:
   m_ObjectHideFlags: 0
@@ -667,6 +671,7 @@ GameObject:
   - 23: {fileID: 168337486}
   - 114: {fileID: 168337485}
   - 114: {fileID: 168337484}
+  - 114: {fileID: 168337488}
   m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
@@ -736,6 +741,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 172011104}
   m_GameObject: {fileID: 168337482}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &168337488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400012, guid: c8d918b665cdd4333be974325cb14178,
+    type: 2}
+  m_PrefabInternal: {fileID: 172011104}
+  m_GameObject: {fileID: 168337482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd8ecd63cb7ea4c2396164d1020e2d01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentScript: {fileID: 0}
+  smoothRotation: 10
 --- !u!1001 &172011104
 Prefab:
   m_ObjectHideFlags: 0
@@ -882,7 +901,6 @@ GameObject:
   - 33: {fileID: 180984728}
   - 23: {fileID: 180984727}
   - 114: {fileID: 180984726}
-  - 114: {fileID: 180984725}
   m_Layer: 8
   m_Name: 1
   m_TagString: car
@@ -903,20 +921,6 @@ Transform:
   - {fileID: 1559269470}
   - {fileID: 953127323}
   m_Father: {fileID: 0}
---- !u!114 &180984725
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400010, guid: c8d918b665cdd4333be974325cb14178,
-    type: 2}
-  m_PrefabInternal: {fileID: 945886476}
-  m_GameObject: {fileID: 180984723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a69efb112481443ea45e7445d6eb574, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  teorico: {fileID: 0}
-  isEnabled: 1
 --- !u!114 &180984726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -932,16 +936,18 @@ MonoBehaviour:
   cueLength: 0
   pos: 1
   pIndex: 0
+  buffer: 10
   destination: {x: 0, y: 0, z: 0}
   speed: .100000001
   remainingDst: 0
   timeFromStart: 0
   status: 
-  smoothRotation: 3
   sync: 1
   loop: 0
   loopStartTime: 0
-  updating: 0
+  isEnabled: 1
+  carName: 
+  isFinished: 0
 --- !u!23 &180984727
 Renderer:
   m_ObjectHideFlags: 0
@@ -1048,7 +1054,7 @@ Transform:
   m_GameObject: {fileID: 195743092}
   m_LocalRotation: {x: 0, y: -.707106829, z: 0, w: .707106709}
   m_LocalPosition: {x: .10389208, y: 5.73071289, z: 2.01881267e-06}
-  m_LocalScale: {x: 0, y: 4.86474705, z: 25.9453144}
+  m_LocalScale: {x: 0, y: 5, z: 20}
   m_Children: []
   m_Father: {fileID: 749050281}
 --- !u!1 &205145201
@@ -1062,7 +1068,6 @@ GameObject:
   - 33: {fileID: 205145206}
   - 23: {fileID: 205145205}
   - 114: {fileID: 205145204}
-  - 114: {fileID: 205145203}
   m_Layer: 8
   m_Name: 5
   m_TagString: car
@@ -1083,20 +1088,6 @@ Transform:
   - {fileID: 1098565739}
   - {fileID: 1345431546}
   m_Father: {fileID: 0}
---- !u!114 &205145203
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400010, guid: c8d918b665cdd4333be974325cb14178,
-    type: 2}
-  m_PrefabInternal: {fileID: 1930535197}
-  m_GameObject: {fileID: 205145201}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a69efb112481443ea45e7445d6eb574, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  teorico: {fileID: 0}
-  isEnabled: 1
 --- !u!114 &205145204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1112,16 +1103,18 @@ MonoBehaviour:
   cueLength: 0
   pos: 1
   pIndex: 0
+  buffer: 10
   destination: {x: 0, y: 0, z: 0}
   speed: .100000001
   remainingDst: 0
   timeFromStart: 0
   status: 
-  smoothRotation: 3
   sync: 1
   loop: 0
   loopStartTime: 0
-  updating: 0
+  isEnabled: 1
+  carName: 
+  isFinished: 0
 --- !u!23 &205145205
 Renderer:
   m_ObjectHideFlags: 0
@@ -1191,7 +1184,6 @@ MonoBehaviour:
   hostName: http://localhost:8888/unity/
   prueba: montecarlo
   tramo: 1
-  lineRenderer: {fileID: 0}
   ready: 0
 --- !u!120 &263469875
 LineRenderer:
@@ -1411,6 +1403,7 @@ GameObject:
   - 23: {fileID: 389058767}
   - 114: {fileID: 389058766}
   - 114: {fileID: 389058765}
+  - 114: {fileID: 389058769}
   m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
@@ -1480,6 +1473,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 788012661}
   m_GameObject: {fileID: 389058763}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &389058769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400012, guid: c8d918b665cdd4333be974325cb14178,
+    type: 2}
+  m_PrefabInternal: {fileID: 788012661}
+  m_GameObject: {fileID: 389058763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd8ecd63cb7ea4c2396164d1020e2d01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentScript: {fileID: 0}
+  smoothRotation: 10
 --- !u!1 &399453506
 GameObject:
   m_ObjectHideFlags: 0
@@ -1491,7 +1498,6 @@ GameObject:
   - 33: {fileID: 399453511}
   - 23: {fileID: 399453510}
   - 114: {fileID: 399453509}
-  - 114: {fileID: 399453508}
   m_Layer: 8
   m_Name: 22
   m_TagString: car
@@ -1512,20 +1518,6 @@ Transform:
   - {fileID: 1600275952}
   - {fileID: 27790228}
   m_Father: {fileID: 0}
---- !u!114 &399453508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400010, guid: c8d918b665cdd4333be974325cb14178,
-    type: 2}
-  m_PrefabInternal: {fileID: 753961393}
-  m_GameObject: {fileID: 399453506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a69efb112481443ea45e7445d6eb574, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  teorico: {fileID: 0}
-  isEnabled: 1
 --- !u!114 &399453509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1541,16 +1533,18 @@ MonoBehaviour:
   cueLength: 0
   pos: 1
   pIndex: 0
+  buffer: 10
   destination: {x: 0, y: 0, z: 0}
   speed: .100000001
   remainingDst: 0
   timeFromStart: 0
   status: 
-  smoothRotation: 3
   sync: 1
   loop: 0
   loopStartTime: 0
-  updating: 0
+  isEnabled: 1
+  carName: 
+  isFinished: 0
 --- !u!23 &399453510
 Renderer:
   m_ObjectHideFlags: 0
@@ -1666,48 +1660,6 @@ Prefab:
   m_RootGameObject: {fileID: 1322162193}
   m_IsPrefabParent: 0
   m_IsExploded: 1
---- !u!1 &436056111
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 100006, guid: c8d918b665cdd4333be974325cb14178, type: 2}
-  m_PrefabInternal: {fileID: 1269825890}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 436056112}
-  - 114: {fileID: 436056113}
-  m_Layer: 8
-  m_Name: cartelaContainer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &436056112
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 400006, guid: c8d918b665cdd4333be974325cb14178, type: 2}
-  m_PrefabInternal: {fileID: 1269825890}
-  m_GameObject: {fileID: 436056111}
-  m_LocalRotation: {x: 0, y: .70710659, z: 0, w: -.707106948}
-  m_LocalPosition: {x: 0, y: 9.45278931, z: -1.35251617}
-  m_LocalScale: {x: 2, y: 1, z: .5}
-  m_Children:
-  - {fileID: 2007942695}
-  m_Father: {fileID: 660235885}
---- !u!114 &436056113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400008, guid: c8d918b665cdd4333be974325cb14178,
-    type: 2}
-  m_PrefabInternal: {fileID: 1269825890}
-  m_GameObject: {fileID: 436056111}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a4debc9ad1110f6d00074c88d76c639, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  smooth: 6
 --- !u!1 &473741968
 GameObject:
   m_ObjectHideFlags: 0
@@ -1810,7 +1762,6 @@ GameObject:
   - 33: {fileID: 518010357}
   - 23: {fileID: 518010356}
   - 114: {fileID: 518010355}
-  - 114: {fileID: 518010354}
   m_Layer: 8
   m_Name: 6
   m_TagString: car
@@ -1831,20 +1782,6 @@ Transform:
   - {fileID: 132436112}
   - {fileID: 389058764}
   m_Father: {fileID: 0}
---- !u!114 &518010354
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400010, guid: c8d918b665cdd4333be974325cb14178,
-    type: 2}
-  m_PrefabInternal: {fileID: 788012661}
-  m_GameObject: {fileID: 518010352}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a69efb112481443ea45e7445d6eb574, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  teorico: {fileID: 0}
-  isEnabled: 1
 --- !u!114 &518010355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1860,16 +1797,18 @@ MonoBehaviour:
   cueLength: 0
   pos: 1
   pIndex: 0
+  buffer: 10
   destination: {x: 0, y: 0, z: 0}
   speed: .100000001
   remainingDst: 0
   timeFromStart: 0
   status: 
-  smoothRotation: 3
   sync: 1
   loop: 0
   loopStartTime: 0
-  updating: 0
+  isEnabled: 1
+  carName: 
+  isFinished: 0
 --- !u!23 &518010356
 Renderer:
   m_ObjectHideFlags: 0
@@ -1909,6 +1848,7 @@ GameObject:
   - 23: {fileID: 520239167}
   - 114: {fileID: 520239166}
   - 114: {fileID: 520239165}
+  - 114: {fileID: 520239169}
   m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
@@ -1978,87 +1918,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1782237897}
   m_GameObject: {fileID: 520239163}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &521779256
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 100002, guid: c8d918b665cdd4333be974325cb14178, type: 2}
-  m_PrefabInternal: {fileID: 1269825890}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 521779261}
-  - 33: {fileID: 521779260}
-  - 23: {fileID: 521779259}
-  - 114: {fileID: 521779258}
-  - 114: {fileID: 521779257}
-  m_Layer: 8
-  m_Name: Cube
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &521779257
+--- !u!114 &520239169
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400004, guid: c8d918b665cdd4333be974325cb14178,
+  m_PrefabParentObject: {fileID: 11400012, guid: c8d918b665cdd4333be974325cb14178,
     type: 2}
-  m_PrefabInternal: {fileID: 1269825890}
-  m_GameObject: {fileID: 521779256}
+  m_PrefabInternal: {fileID: 1782237897}
+  m_GameObject: {fileID: 520239163}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4adf940139764829bd2547cf194570f, type: 3}
+  m_Script: {fileID: 11500000, guid: bd8ecd63cb7ea4c2396164d1020e2d01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &521779258
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400002, guid: c8d918b665cdd4333be974325cb14178,
-    type: 2}
-  m_PrefabInternal: {fileID: 1269825890}
-  m_GameObject: {fileID: 521779256}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 048235ca18b1f4521844d031187d95be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!23 &521779259
-Renderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 2300002, guid: c8d918b665cdd4333be974325cb14178,
-    type: 2}
-  m_PrefabInternal: {fileID: 1269825890}
-  m_GameObject: {fileID: 521779256}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
-  m_Materials:
-  - {fileID: 2100000, guid: a15624ffbd9764419ad677e507fbbc02, type: 2}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
---- !u!33 &521779260
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 3300002, guid: c8d918b665cdd4333be974325cb14178,
-    type: 2}
-  m_PrefabInternal: {fileID: 1269825890}
-  m_GameObject: {fileID: 521779256}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &521779261
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 400002, guid: c8d918b665cdd4333be974325cb14178, type: 2}
-  m_PrefabInternal: {fileID: 1269825890}
-  m_GameObject: {fileID: 521779256}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: -1.3525176}
-  m_LocalScale: {x: 2, y: 2, z: 4}
-  m_Children: []
-  m_Father: {fileID: 660235885}
+  parentScript: {fileID: 0}
+  smoothRotation: 10
 --- !u!1 &580068932
 GameObject:
   m_ObjectHideFlags: 0
@@ -2086,7 +1959,7 @@ Transform:
   m_GameObject: {fileID: 580068932}
   m_LocalRotation: {x: 0, y: -.707106829, z: 0, w: .707106709}
   m_LocalPosition: {x: .10389208, y: 5.73071289, z: 2.01881267e-06}
-  m_LocalScale: {x: 0, y: 4.86474705, z: 25.9453144}
+  m_LocalScale: {x: 0, y: 5, z: 20}
   m_Children: []
   m_Father: {fileID: 322398275}
 --- !u!114 &580068934
@@ -2141,104 +2014,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 758405569}
   m_GameObject: {fileID: 580068932}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &660235884
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 100000, guid: c8d918b665cdd4333be974325cb14178, type: 2}
-  m_PrefabInternal: {fileID: 1269825890}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 660235885}
-  - 33: {fileID: 660235889}
-  - 23: {fileID: 660235888}
-  - 114: {fileID: 660235887}
-  - 114: {fileID: 660235886}
-  m_Layer: 8
-  m_Name: 12
-  m_TagString: car
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &660235885
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 400000, guid: c8d918b665cdd4333be974325cb14178, type: 2}
-  m_PrefabInternal: {fileID: 1269825890}
-  m_GameObject: {fileID: 660235884}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.6798468, y: -338.306183, z: -42.1344376}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 436056112}
-  - {fileID: 521779261}
-  m_Father: {fileID: 0}
---- !u!114 &660235886
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400010, guid: c8d918b665cdd4333be974325cb14178,
-    type: 2}
-  m_PrefabInternal: {fileID: 1269825890}
-  m_GameObject: {fileID: 660235884}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a69efb112481443ea45e7445d6eb574, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  teorico: {fileID: 0}
-  isEnabled: 1
---- !u!114 &660235887
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400000, guid: c8d918b665cdd4333be974325cb14178,
-    type: 2}
-  m_PrefabInternal: {fileID: 1269825890}
-  m_GameObject: {fileID: 660235884}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28b319facbda34e3fa7cef93a9717d20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cueLength: 0
-  pos: 1
-  pIndex: 0
-  destination: {x: 0, y: 0, z: 0}
-  speed: .100000001
-  remainingDst: 0
-  timeFromStart: 0
-  status: 
-  smoothRotation: 3
-  sync: 1
-  loop: 0
-  loopStartTime: 0
-  updating: 0
---- !u!23 &660235888
-Renderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 2300000, guid: c8d918b665cdd4333be974325cb14178,
-    type: 2}
-  m_PrefabInternal: {fileID: 1269825890}
-  m_GameObject: {fileID: 660235884}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
-  m_Materials:
-  - {fileID: 0}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
---- !u!33 &660235889
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 3300000, guid: c8d918b665cdd4333be974325cb14178,
-    type: 2}
-  m_PrefabInternal: {fileID: 1269825890}
-  m_GameObject: {fileID: 660235884}
-  m_Mesh: {fileID: 0}
 --- !u!1 &666026987
 GameObject:
   m_ObjectHideFlags: 0
@@ -2293,6 +2068,7 @@ GameObject:
   - 23: {fileID: 724267485}
   - 114: {fileID: 724267484}
   - 114: {fileID: 724267483}
+  - 114: {fileID: 724267487}
   m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
@@ -2362,6 +2138,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 32754842}
   m_GameObject: {fileID: 724267481}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &724267487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400012, guid: c8d918b665cdd4333be974325cb14178,
+    type: 2}
+  m_PrefabInternal: {fileID: 32754842}
+  m_GameObject: {fileID: 724267481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd8ecd63cb7ea4c2396164d1020e2d01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentScript: {fileID: 0}
+  smoothRotation: 10
 --- !u!1 &741802407
 GameObject:
   m_ObjectHideFlags: 0
@@ -2441,7 +2231,7 @@ Transform:
   m_GameObject: {fileID: 741802407}
   m_LocalRotation: {x: 0, y: -.707106829, z: 0, w: .707106709}
   m_LocalPosition: {x: .10389208, y: 5.73071289, z: 2.01881267e-06}
-  m_LocalScale: {x: 0, y: 4.86474705, z: 25.9453144}
+  m_LocalScale: {x: 0, y: 5, z: 20}
   m_Children: []
   m_Father: {fileID: 132436112}
 --- !u!1 &749050280
@@ -2725,7 +2515,6 @@ GameObject:
   - 33: {fileID: 809281617}
   - 23: {fileID: 809281616}
   - 114: {fileID: 809281615}
-  - 114: {fileID: 809281614}
   m_Layer: 8
   m_Name: 9
   m_TagString: car
@@ -2746,20 +2535,6 @@ Transform:
   - {fileID: 322398275}
   - {fileID: 1335841811}
   m_Father: {fileID: 0}
---- !u!114 &809281614
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400010, guid: c8d918b665cdd4333be974325cb14178,
-    type: 2}
-  m_PrefabInternal: {fileID: 758405569}
-  m_GameObject: {fileID: 809281612}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a69efb112481443ea45e7445d6eb574, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  teorico: {fileID: 0}
-  isEnabled: 1
 --- !u!114 &809281615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2775,16 +2550,18 @@ MonoBehaviour:
   cueLength: 0
   pos: 1
   pIndex: 0
+  buffer: 10
   destination: {x: 0, y: 0, z: 0}
   speed: .100000001
   remainingDst: 0
   timeFromStart: 0
   status: 
-  smoothRotation: 3
   sync: 1
   loop: 0
   loopStartTime: 0
-  updating: 0
+  isEnabled: 1
+  carName: 
+  isFinished: 0
 --- !u!23 &809281616
 Renderer:
   m_ObjectHideFlags: 0
@@ -2930,7 +2707,7 @@ Transform:
   m_GameObject: {fileID: 918369037}
   m_LocalRotation: {x: 0, y: -.707106829, z: 0, w: .707106709}
   m_LocalPosition: {x: .10389208, y: 5.73071289, z: 2.01881267e-06}
-  m_LocalScale: {x: 0, y: 4.86474705, z: 25.9453144}
+  m_LocalScale: {x: 0, y: 5, z: 20}
   m_Children: []
   m_Father: {fileID: 1535566036}
 --- !u!114 &918369039
@@ -3012,7 +2789,7 @@ Transform:
   m_GameObject: {fileID: 940858963}
   m_LocalRotation: {x: 0, y: -.707106829, z: 0, w: .707106709}
   m_LocalPosition: {x: .10389208, y: 5.73071289, z: 2.01881267e-06}
-  m_LocalScale: {x: 0, y: 4.86474705, z: 25.9453144}
+  m_LocalScale: {x: 0, y: 5, z: 20}
   m_Children: []
   m_Father: {fileID: 1600275952}
 --- !u!114 &940858965
@@ -3123,6 +2900,7 @@ GameObject:
   - 23: {fileID: 953127326}
   - 114: {fileID: 953127325}
   - 114: {fileID: 953127324}
+  - 114: {fileID: 953127328}
   m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
@@ -3192,6 +2970,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 945886476}
   m_GameObject: {fileID: 953127322}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &953127328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400012, guid: c8d918b665cdd4333be974325cb14178,
+    type: 2}
+  m_PrefabInternal: {fileID: 945886476}
+  m_GameObject: {fileID: 953127322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd8ecd63cb7ea4c2396164d1020e2d01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentScript: {fileID: 0}
+  smoothRotation: 10
 --- !u!1 &997181358
 GameObject:
   m_ObjectHideFlags: 0
@@ -3219,7 +3011,7 @@ Transform:
   m_GameObject: {fileID: 997181358}
   m_LocalRotation: {x: 0, y: -.707106829, z: 0, w: .707106709}
   m_LocalPosition: {x: .10389208, y: 5.73071289, z: 2.01881267e-06}
-  m_LocalScale: {x: 0, y: 4.86474705, z: 25.9453144}
+  m_LocalScale: {x: 0, y: 5, z: 20}
   m_Children: []
   m_Father: {fileID: 2094327724}
 --- !u!114 &997181360
@@ -3317,6 +3109,7 @@ MonoBehaviour:
   loop: 0
   leaderLoop: 0
   loopStartTime: 0
+  state: 0
 --- !u!114 &1003439417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3328,8 +3121,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa95cf790d0954ce9bf9462906386763, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leaderValue: 0
   car: {fileID: 0}
-  teorico: {fileID: 0}
+  updateLeader: 0
 --- !u!1 &1014919234
 GameObject:
   m_ObjectHideFlags: 0
@@ -3341,7 +3135,6 @@ GameObject:
   - 33: {fileID: 1014919239}
   - 23: {fileID: 1014919238}
   - 114: {fileID: 1014919237}
-  - 114: {fileID: 1014919236}
   m_Layer: 8
   m_Name: 8
   m_TagString: car
@@ -3362,20 +3155,6 @@ Transform:
   - {fileID: 1148918489}
   - {fileID: 1264460332}
   m_Father: {fileID: 0}
---- !u!114 &1014919236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400010, guid: c8d918b665cdd4333be974325cb14178,
-    type: 2}
-  m_PrefabInternal: {fileID: 1150064090}
-  m_GameObject: {fileID: 1014919234}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a69efb112481443ea45e7445d6eb574, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  teorico: {fileID: 0}
-  isEnabled: 1
 --- !u!114 &1014919237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3391,16 +3170,18 @@ MonoBehaviour:
   cueLength: 0
   pos: 1
   pIndex: 0
+  buffer: 10
   destination: {x: 0, y: 0, z: 0}
   speed: .100000001
   remainingDst: 0
   timeFromStart: 0
   status: 
-  smoothRotation: 3
   sync: 1
   loop: 0
   loopStartTime: 0
-  updating: 0
+  isEnabled: 1
+  carName: 
+  isFinished: 0
 --- !u!23 &1014919238
 Renderer:
   m_ObjectHideFlags: 0
@@ -3439,7 +3220,6 @@ GameObject:
   - 33: {fileID: 1031336560}
   - 23: {fileID: 1031336559}
   - 114: {fileID: 1031336558}
-  - 114: {fileID: 1031336557}
   m_Layer: 8
   m_Name: 4
   m_TagString: car
@@ -3460,20 +3240,6 @@ Transform:
   - {fileID: 749050281}
   - {fileID: 724267482}
   m_Father: {fileID: 0}
---- !u!114 &1031336557
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400010, guid: c8d918b665cdd4333be974325cb14178,
-    type: 2}
-  m_PrefabInternal: {fileID: 32754842}
-  m_GameObject: {fileID: 1031336555}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a69efb112481443ea45e7445d6eb574, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  teorico: {fileID: 0}
-  isEnabled: 1
 --- !u!114 &1031336558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3489,16 +3255,18 @@ MonoBehaviour:
   cueLength: 0
   pos: 1
   pIndex: 0
+  buffer: 10
   destination: {x: 0, y: 0, z: 0}
   speed: .100000001
   remainingDst: 0
   timeFromStart: 0
   status: 
-  smoothRotation: 3
   sync: 1
   loop: 0
   loopStartTime: 0
-  updating: 0
+  isEnabled: 1
+  carName: 
+  isFinished: 0
 --- !u!23 &1031336559
 Renderer:
   m_ObjectHideFlags: 0
@@ -3744,7 +3512,7 @@ Transform:
   m_GameObject: {fileID: 1116014530}
   m_LocalRotation: {x: 0, y: -.707106829, z: 0, w: .707106709}
   m_LocalPosition: {x: .10389208, y: 5.73071289, z: 2.01881267e-06}
-  m_LocalScale: {x: 0, y: 4.86474705, z: 25.9453144}
+  m_LocalScale: {x: 0, y: 5, z: 20}
   m_Children: []
   m_Father: {fileID: 1148918489}
 --- !u!1 &1116739584
@@ -3905,6 +3673,7 @@ MonoBehaviour:
   guitexts: []
   isEnabled: 1
   rankPrefab: {fileID: 400000, guid: 77ae0c7fb166d462b90a8831d30bb96b, type: 2}
+  leyenda: {fileID: 0}
 --- !u!1 &1148918488
 GameObject:
   m_ObjectHideFlags: 0
@@ -4002,7 +3771,6 @@ GameObject:
   - 33: {fileID: 1166363145}
   - 23: {fileID: 1166363144}
   - 114: {fileID: 1166363143}
-  - 114: {fileID: 1166363142}
   m_Layer: 8
   m_Name: 10
   m_TagString: car
@@ -4023,20 +3791,6 @@ Transform:
   - {fileID: 1535566036}
   - {fileID: 2040647346}
   m_Father: {fileID: 0}
---- !u!114 &1166363142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400010, guid: c8d918b665cdd4333be974325cb14178,
-    type: 2}
-  m_PrefabInternal: {fileID: 1526994637}
-  m_GameObject: {fileID: 1166363140}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a69efb112481443ea45e7445d6eb574, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  teorico: {fileID: 0}
-  isEnabled: 1
 --- !u!114 &1166363143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4052,16 +3806,18 @@ MonoBehaviour:
   cueLength: 0
   pos: 1
   pIndex: 0
+  buffer: 10
   destination: {x: 0, y: 0, z: 0}
   speed: .100000001
   remainingDst: 0
   timeFromStart: 0
   status: 
-  smoothRotation: 3
   sync: 1
   loop: 0
   loopStartTime: 0
-  updating: 0
+  isEnabled: 1
+  carName: 
+  isFinished: 0
 --- !u!23 &1166363144
 Renderer:
   m_ObjectHideFlags: 0
@@ -4116,7 +3872,7 @@ Transform:
   m_GameObject: {fileID: 1243546781}
   m_LocalRotation: {x: 0, y: -.707106829, z: 0, w: .707106709}
   m_LocalPosition: {x: .10389208, y: 5.73071289, z: 2.01881267e-06}
-  m_LocalScale: {x: 0, y: 4.86474705, z: 25.9453144}
+  m_LocalScale: {x: 0, y: 5, z: 20}
   m_Children: []
   m_Father: {fileID: 1987026962}
 --- !u!114 &1243546783
@@ -4225,6 +3981,7 @@ GameObject:
   - 23: {fileID: 1264460335}
   - 114: {fileID: 1264460334}
   - 114: {fileID: 1264460333}
+  - 114: {fileID: 1264460337}
   m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
@@ -4294,50 +4051,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1150064090}
   m_GameObject: {fileID: 1264460331}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1001 &1269825890
-Prefab:
+--- !u!114 &1264460337
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 400000, guid: c8d918b665cdd4333be974325cb14178, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 11.6798468
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: c8d918b665cdd4333be974325cb14178, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -338.306183
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: c8d918b665cdd4333be974325cb14178, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -42.1344376
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: c8d918b665cdd4333be974325cb14178, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: c8d918b665cdd4333be974325cb14178, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: c8d918b665cdd4333be974325cb14178, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: c8d918b665cdd4333be974325cb14178, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: c8d918b665cdd4333be974325cb14178, type: 2}
-      propertyPath: m_Name
-      value: 12
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: c8d918b665cdd4333be974325cb14178, type: 2}
-  m_RootGameObject: {fileID: 660235884}
-  m_IsPrefabParent: 0
-  m_IsExploded: 1
+  m_PrefabParentObject: {fileID: 11400012, guid: c8d918b665cdd4333be974325cb14178,
+    type: 2}
+  m_PrefabInternal: {fileID: 1150064090}
+  m_GameObject: {fileID: 1264460331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd8ecd63cb7ea4c2396164d1020e2d01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentScript: {fileID: 0}
+  smoothRotation: 10
 --- !u!1 &1279730276
 GameObject:
   m_ObjectHideFlags: 0
@@ -4350,6 +4077,7 @@ GameObject:
   - 23: {fileID: 1279730280}
   - 114: {fileID: 1279730279}
   - 114: {fileID: 1279730278}
+  - 114: {fileID: 1279730282}
   m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
@@ -4419,6 +4147,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 414571056}
   m_GameObject: {fileID: 1279730276}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1279730282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400012, guid: c8d918b665cdd4333be974325cb14178,
+    type: 2}
+  m_PrefabInternal: {fileID: 414571056}
+  m_GameObject: {fileID: 1279730276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd8ecd63cb7ea4c2396164d1020e2d01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentScript: {fileID: 0}
+  smoothRotation: 10
 --- !u!1 &1292588976
 GameObject:
   m_ObjectHideFlags: 0
@@ -4474,7 +4216,6 @@ GameObject:
   - 33: {fileID: 1322162198}
   - 23: {fileID: 1322162197}
   - 114: {fileID: 1322162196}
-  - 114: {fileID: 1322162195}
   m_Layer: 8
   m_Name: 3
   m_TagString: car
@@ -4495,20 +4236,6 @@ Transform:
   - {fileID: 290501844}
   - {fileID: 1279730277}
   m_Father: {fileID: 0}
---- !u!114 &1322162195
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400010, guid: c8d918b665cdd4333be974325cb14178,
-    type: 2}
-  m_PrefabInternal: {fileID: 414571056}
-  m_GameObject: {fileID: 1322162193}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a69efb112481443ea45e7445d6eb574, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  teorico: {fileID: 0}
-  isEnabled: 1
 --- !u!114 &1322162196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4524,16 +4251,18 @@ MonoBehaviour:
   cueLength: 0
   pos: 1
   pIndex: 0
+  buffer: 10
   destination: {x: 0, y: 0, z: 0}
   speed: .100000001
   remainingDst: 0
   timeFromStart: 0
   status: 
-  smoothRotation: 3
   sync: 1
   loop: 0
   loopStartTime: 0
-  updating: 0
+  isEnabled: 1
+  carName: 
+  isFinished: 0
 --- !u!23 &1322162197
 Renderer:
   m_ObjectHideFlags: 0
@@ -4573,6 +4302,7 @@ GameObject:
   - 23: {fileID: 1335841814}
   - 114: {fileID: 1335841813}
   - 114: {fileID: 1335841812}
+  - 114: {fileID: 1335841816}
   m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
@@ -4642,6 +4372,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 758405569}
   m_GameObject: {fileID: 1335841810}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1335841816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400012, guid: c8d918b665cdd4333be974325cb14178,
+    type: 2}
+  m_PrefabInternal: {fileID: 758405569}
+  m_GameObject: {fileID: 1335841810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd8ecd63cb7ea4c2396164d1020e2d01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentScript: {fileID: 0}
+  smoothRotation: 10
 --- !u!1 &1345431545
 GameObject:
   m_ObjectHideFlags: 0
@@ -4654,6 +4398,7 @@ GameObject:
   - 23: {fileID: 1345431549}
   - 114: {fileID: 1345431548}
   - 114: {fileID: 1345431547}
+  - 114: {fileID: 1345431551}
   m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
@@ -4723,6 +4468,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 1930535197}
   m_GameObject: {fileID: 1345431545}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1345431551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400012, guid: c8d918b665cdd4333be974325cb14178,
+    type: 2}
+  m_PrefabInternal: {fileID: 1930535197}
+  m_GameObject: {fileID: 1345431545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd8ecd63cb7ea4c2396164d1020e2d01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentScript: {fileID: 0}
+  smoothRotation: 10
 --- !u!1 &1441255202
 GameObject:
   m_ObjectHideFlags: 0
@@ -4911,7 +4670,6 @@ GameObject:
   - 33: {fileID: 1549174379}
   - 23: {fileID: 1549174378}
   - 114: {fileID: 1549174377}
-  - 114: {fileID: 1549174376}
   m_Layer: 8
   m_Name: 21
   m_TagString: car
@@ -4919,20 +4677,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1549174376
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400010, guid: c8d918b665cdd4333be974325cb14178,
-    type: 2}
-  m_PrefabInternal: {fileID: 1782237897}
-  m_GameObject: {fileID: 1549174375}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a69efb112481443ea45e7445d6eb574, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  teorico: {fileID: 0}
-  isEnabled: 1
 --- !u!114 &1549174377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4948,16 +4692,18 @@ MonoBehaviour:
   cueLength: 0
   pos: 1
   pIndex: 0
+  buffer: 10
   destination: {x: 0, y: 0, z: 0}
   speed: .100000001
   remainingDst: 0
   timeFromStart: 0
   status: 
-  smoothRotation: 3
   sync: 1
   loop: 0
   loopStartTime: 0
-  updating: 0
+  isEnabled: 1
+  carName: 
+  isFinished: 0
 --- !u!23 &1549174378
 Renderer:
   m_ObjectHideFlags: 0
@@ -5051,7 +4797,6 @@ GameObject:
   - 33: {fileID: 1586846792}
   - 23: {fileID: 1586846791}
   - 114: {fileID: 1586846790}
-  - 114: {fileID: 1586846789}
   m_Layer: 8
   m_Name: 2
   m_TagString: car
@@ -5072,20 +4817,6 @@ Transform:
   - {fileID: 1248064444}
   - {fileID: 8656178}
   m_Father: {fileID: 0}
---- !u!114 &1586846789
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400010, guid: c8d918b665cdd4333be974325cb14178,
-    type: 2}
-  m_PrefabInternal: {fileID: 500033025}
-  m_GameObject: {fileID: 1586846787}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a69efb112481443ea45e7445d6eb574, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  teorico: {fileID: 0}
-  isEnabled: 1
 --- !u!114 &1586846790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5101,16 +4832,18 @@ MonoBehaviour:
   cueLength: 0
   pos: 1
   pIndex: 0
+  buffer: 10
   destination: {x: 0, y: 0, z: 0}
   speed: .100000001
   remainingDst: 0
   timeFromStart: 0
   status: 
-  smoothRotation: 3
   sync: 1
   loop: 0
   loopStartTime: 0
-  updating: 0
+  isEnabled: 1
+  carName: 
+  isFinished: 0
 --- !u!23 &1586846791
 Renderer:
   m_ObjectHideFlags: 0
@@ -5259,7 +4992,7 @@ Transform:
   m_GameObject: {fileID: 1661207156}
   m_LocalRotation: {x: 0, y: -.707106829, z: 0, w: .707106709}
   m_LocalPosition: {x: .10389208, y: 5.73071289, z: 2.01881267e-06}
-  m_LocalScale: {x: 0, y: 4.86474705, z: 25.9453144}
+  m_LocalScale: {x: 0, y: 5, z: 20}
   m_Children: []
   m_Father: {fileID: 290501844}
 --- !u!1 &1665925676
@@ -5274,6 +5007,7 @@ GameObject:
   - 23: {fileID: 1665925680}
   - 114: {fileID: 1665925679}
   - 114: {fileID: 1665925678}
+  - 114: {fileID: 1665925682}
   m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
@@ -5343,6 +5077,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 409171359}
   m_GameObject: {fileID: 1665925676}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1665925682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400012, guid: c8d918b665cdd4333be974325cb14178,
+    type: 2}
+  m_PrefabInternal: {fileID: 409171359}
+  m_GameObject: {fileID: 1665925676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd8ecd63cb7ea4c2396164d1020e2d01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentScript: {fileID: 0}
+  smoothRotation: 10
 --- !u!1001 &1672133152
 Prefab:
   m_ObjectHideFlags: 0
@@ -5466,7 +5214,7 @@ Transform:
   m_GameObject: {fileID: 1699703838}
   m_LocalRotation: {x: 0, y: -.707106829, z: 0, w: .707106709}
   m_LocalPosition: {x: .10389208, y: 5.73071289, z: 2.01881267e-06}
-  m_LocalScale: {x: 0, y: 4.86474705, z: 25.9453144}
+  m_LocalScale: {x: 0, y: 5, z: 20}
   m_Children: []
   m_Father: {fileID: 666026988}
 --- !u!1001 &1782237897
@@ -5524,7 +5272,6 @@ GameObject:
   - 33: {fileID: 1797237836}
   - 23: {fileID: 1797237835}
   - 114: {fileID: 1797237834}
-  - 114: {fileID: 1797237833}
   m_Layer: 8
   m_Name: 11
   m_TagString: car
@@ -5545,20 +5292,6 @@ Transform:
   - {fileID: 1903195609}
   - {fileID: 1665925677}
   m_Father: {fileID: 0}
---- !u!114 &1797237833
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400010, guid: c8d918b665cdd4333be974325cb14178,
-    type: 2}
-  m_PrefabInternal: {fileID: 409171359}
-  m_GameObject: {fileID: 1797237831}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a69efb112481443ea45e7445d6eb574, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  teorico: {fileID: 0}
-  isEnabled: 1
 --- !u!114 &1797237834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5574,16 +5307,18 @@ MonoBehaviour:
   cueLength: 0
   pos: 1
   pIndex: 0
+  buffer: 10
   destination: {x: 0, y: 0, z: 0}
   speed: .100000001
   remainingDst: 0
   timeFromStart: 0
   status: 
-  smoothRotation: 3
   sync: 1
   loop: 0
   loopStartTime: 0
-  updating: 0
+  isEnabled: 1
+  carName: 
+  isFinished: 0
 --- !u!23 &1797237835
 Renderer:
   m_ObjectHideFlags: 0
@@ -5638,7 +5373,7 @@ Transform:
   m_GameObject: {fileID: 1840191686}
   m_LocalRotation: {x: 0, y: -.707106829, z: 0, w: .707106709}
   m_LocalPosition: {x: .10389208, y: 5.73071289, z: 2.01881267e-06}
-  m_LocalScale: {x: 0, y: 4.86474705, z: 25.9453144}
+  m_LocalScale: {x: 0, y: 5, z: 20}
   m_Children: []
   m_Father: {fileID: 1559269470}
 --- !u!114 &1840191688
@@ -5791,6 +5526,7 @@ GameObject:
   - 23: {fileID: 1947821255}
   - 114: {fileID: 1947821254}
   - 114: {fileID: 1947821253}
+  - 114: {fileID: 1947821258}
   m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
@@ -5860,6 +5596,20 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 4}
   m_Children: []
   m_Father: {fileID: 56918230}
+--- !u!114 &1947821258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400012, guid: c8d918b665cdd4333be974325cb14178,
+    type: 2}
+  m_PrefabInternal: {fileID: 1672133152}
+  m_GameObject: {fileID: 1947821252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd8ecd63cb7ea4c2396164d1020e2d01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentScript: {fileID: 0}
+  smoothRotation: 10
 --- !u!1 &1987026961
 GameObject:
   m_ObjectHideFlags: 0
@@ -5902,88 +5652,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   smooth: 6
---- !u!1 &2007942694
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 100004, guid: c8d918b665cdd4333be974325cb14178, type: 2}
-  m_PrefabInternal: {fileID: 1269825890}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 2007942695}
-  - 33: {fileID: 2007942699}
-  - 65: {fileID: 2007942698}
-  - 23: {fileID: 2007942697}
-  - 114: {fileID: 2007942696}
-  m_Layer: 8
-  m_Name: cartela
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2007942695
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 400004, guid: c8d918b665cdd4333be974325cb14178, type: 2}
-  m_PrefabInternal: {fileID: 1269825890}
-  m_GameObject: {fileID: 2007942694}
-  m_LocalRotation: {x: 0, y: -.707106829, z: 0, w: .707106709}
-  m_LocalPosition: {x: .10389208, y: 5.73071289, z: 2.01881267e-06}
-  m_LocalScale: {x: 0, y: 4.86474705, z: 25.9453144}
-  m_Children: []
-  m_Father: {fileID: 436056112}
---- !u!114 &2007942696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400006, guid: c8d918b665cdd4333be974325cb14178,
-    type: 2}
-  m_PrefabInternal: {fileID: 1269825890}
-  m_GameObject: {fileID: 2007942694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 697451a172efb4c2bafc12061ceed868, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!23 &2007942697
-Renderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 2300004, guid: c8d918b665cdd4333be974325cb14178,
-    type: 2}
-  m_PrefabInternal: {fileID: 1269825890}
-  m_GameObject: {fileID: 2007942694}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
-  m_Materials:
-  - {fileID: 2100000, guid: 6350463b8d37b4defb26943bb0a306f4, type: 2}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
---- !u!65 &2007942698
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 6500000, guid: c8d918b665cdd4333be974325cb14178,
-    type: 2}
-  m_PrefabInternal: {fileID: 1269825890}
-  m_GameObject: {fileID: 2007942694}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!33 &2007942699
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 3300004, guid: c8d918b665cdd4333be974325cb14178,
-    type: 2}
-  m_PrefabInternal: {fileID: 1269825890}
-  m_GameObject: {fileID: 2007942694}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &2030269092
 GameObject:
   m_ObjectHideFlags: 0
@@ -6058,6 +5726,7 @@ GameObject:
   - 23: {fileID: 2040647344}
   - 114: {fileID: 2040647343}
   - 114: {fileID: 2040647342}
+  - 114: {fileID: 2040647347}
   m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
@@ -6127,6 +5796,20 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 4}
   m_Children: []
   m_Father: {fileID: 1166363141}
+--- !u!114 &2040647347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400012, guid: c8d918b665cdd4333be974325cb14178,
+    type: 2}
+  m_PrefabInternal: {fileID: 1526994637}
+  m_GameObject: {fileID: 2040647341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd8ecd63cb7ea4c2396164d1020e2d01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentScript: {fileID: 0}
+  smoothRotation: 10
 --- !u!1 &2081282222
 GameObject:
   m_ObjectHideFlags: 0
@@ -6154,7 +5837,7 @@ Transform:
   m_GameObject: {fileID: 2081282222}
   m_LocalRotation: {x: 0, y: -.707106829, z: 0, w: .707106709}
   m_LocalPosition: {x: .10389208, y: 5.73071289, z: 2.01881267e-06}
-  m_LocalScale: {x: 0, y: 4.86474705, z: 25.9453144}
+  m_LocalScale: {x: 0, y: 5, z: 20}
   m_Children: []
   m_Father: {fileID: 1248064444}
 --- !u!114 &2081282224
@@ -6330,6 +6013,6 @@ Transform:
   m_GameObject: {fileID: 2146459819}
   m_LocalRotation: {x: 0, y: -.707106829, z: 0, w: .707106709}
   m_LocalPosition: {x: .10389208, y: 5.73071289, z: 2.01881267e-06}
-  m_LocalScale: {x: 0, y: 4.86474705, z: 25.9453144}
+  m_LocalScale: {x: 0, y: 5, z: 20}
   m_Children: []
   m_Father: {fileID: 1903195609}

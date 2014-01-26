@@ -2,11 +2,13 @@
 var parentScript: life;
 var smoothRotation:float = 10;
 
-function Start () {
-	parentScript = transform.parent.GetComponent("life") as life;
-}
-
 function LateUpdate () {
-	transform.rotation = Quaternion.Slerp(transform.rotation, 
-								parentScript.carRotation, Time.deltaTime * smoothRotation);	
+	if(!parentScript) {
+		parentScript = transform.parent.GetComponent("life") as life;
+	}
+	else{
+		transform.rotation = Quaternion.Slerp(transform.rotation, 
+								parentScript.carRotation, 
+								Time.deltaTime * smoothRotation);	
+	}
 }

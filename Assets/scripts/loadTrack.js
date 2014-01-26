@@ -33,6 +33,7 @@ function Start () {
 		vertices.push(pV);
   		n += 1;
   }
+  print(n + " vertices loaded");
   ready = true;
  
 }

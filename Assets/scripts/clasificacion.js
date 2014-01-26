@@ -9,6 +9,7 @@ public var isEnabled: boolean = true;
 private var ranks: Array;
 public var rankPrefab: Transform;
 public var leyenda: GUIText;
+
 function Start () {
  cars = GameObject.FindGameObjectsWithTag ("car");
  leader = GameObject.Find("controller").GetComponent("leader") as leader;  
@@ -37,10 +38,10 @@ function buildRanks(){
 function buildClassification(){
 	classification =  Array();
 	for (var car in cars){
+		if(!car.active) continue;
 		var script = car.GetComponent("life") as life;
-		if(!script) return;
+		if(!script) continue;
 		if(!script.isEnabled) continue;
-		
 		var p = Array();
 		p[0] = car.name;
 		p[1] = script.remainingDst;
@@ -87,7 +88,9 @@ function Update () {
 	
 	setPosition();	
 	
-	if( Time.time < lastPeriod + 2) return;
+	if( Time.time < lastPeriod + 1) return;
+	
+	lastPeriod = Time.time;
 	buildClassification();
 	disableRanks();
 	
@@ -99,7 +102,6 @@ function Update () {
 	}
 	
 	
-	lastPeriod = Time.time;
 				
    // Check the focus car
 	var reference = 0;
@@ -112,6 +114,9 @@ function Update () {
 	//---- 
 		
 	i = 1;
+	var color = "green";
+	if(controller.state == 0) color = "red";
+	
 	for(var clas in classification){
 		var r = getRankByName(clas[0]);
 		if(!r) continue;
@@ -123,20 +128,31 @@ function Update () {
 		r.Find("name").guiText.text = clas[4];
 		i += 1;		
 					
-		var theTime = clas[5];
+		var theTime =  clas[5];
 		
 		if(clas[0] == leader.car.name){
 			r.Find("marca").active = true;
-			r.Find("value").guiText.text = setAbsoluteTime(theTime);
+			if(controller.state == 0){
+				r.Find("value").guiText.text = setAbsoluteTime(parseInt(theTime));
+				
+			}
+			else{
+				r.Find("value").guiText.text = "-";
+				
+				color = "red";
+			}
 		}
 		else{
 			r.Find("marca").active = false;
 			if(controller.state == 0)
-				r.Find("value").guiText.text = setAbsoluteTime(theTime);
+				r.Find("value").guiText.text = setAbsoluteTime(parseInt(theTime));
 			else{
-				r.Find("value").guiText.text = setRelativeTime(reference, clas);				
+				r.Find("value").guiText.text = setRelativeTime(reference, clas);	
+							
 			}
 		}
+		r.GetComponent("setTexture").setTexture(color);
+		
 	
 	}
 }
@@ -151,10 +167,13 @@ function setRelativeTime(reference, clas){
 	var dst = reference - clas[1] ;
 	var dstInTime :int = 0;
 	if(clas[2] != 0) dstInTime = (dst / clas[2]);
-	if(dstInTime >= 0)
-		return "-" + dstInTime + " s";		
-	else
-		return "+" + Mathf.Abs(dstInTime) + " s";
+	if(dstInTime >= 0){
+		return "-" + parseInt(dstInTime) + " s";	
+		
+	}	
+	else{
+		return "+" + Mathf.Abs(parseInt(dstInTime)) + " s";
+	}
 }
 function disableRanks(){
 	for(var r in ranks) r.active = false;

@@ -4,14 +4,14 @@ public var cueLength: int;
 var pos: int = 1;
 public var pIndex: int;
 	
-public var buffer: int = 10;
 public var destination:Vector3;
 var speed: float = 0.1;
-var remainingDst: int = 0;
-var timeFromStart: int = 0;
+var remainingDst: float = 0;
+var timeFromStart: float = 0;
 public var status:String;
 
 private var teorico: loadTrack;
+private var controller: controller;
 
 public var sync:boolean = true;
 public var loop: boolean = false;
@@ -25,52 +25,71 @@ public var isEnabled: boolean = true;
 private var allMyRenderers: Array;
 public var carName: String = "";
  
+public var isFinished: boolean; 
+private var isLoading: boolean = false;
+
 function Start () {
 
 	allMyRenderers = GetComponentsInChildren(Renderer);
 	teorico = GameObject.Find("teorico").GetComponent("loadTrack") as loadTrack;
-	while(!teorico.ready)
+	controller = GameObject.Find("controller").GetComponent("controller") as controller;
+	while(!teorico.ready){
 		yield WaitForSeconds (1);
+	} 
+	
 	status = "start";
-	sync = true;
-	isEnabled = true;
+	sync = false;
+	isEnabled = false;
+	isFinished = false;
 	
 	loadCarName();
-
+	cue = new Array();
+	
 }
 
 
 function synchronize(){ 
-	yield loadTrack(0);
+	sync = false;
+	isEnabled = true;
 	
-	if(cue.length >= 1){  
-		if(status == "ended") pos = cue.length - 1;
-		else if(cue.length < buffer) pos = 1;  
-		else pos = cue.length - buffer;
-		
-		if(status == "start") 
-			pos  = 0;
-		else
-			isEnabled = true;
-	
-		setValues(cue[pos]);	
-		transform.position = destination;  
-		sync = false;
-	}  
+	if(!isFinished){
+		appendTracks();
+	}
 	else{
-		sync = true;
+		status = "ended";
 	}
 	
+	if(cue.length == 0){ 
+		yield WaitForSeconds(2); 
+		sync = true;
+		return;
+	}
+	 
+	 
+	if(status == "ended") {
+		pos = cue.length - 1;
+		speed = 0;
+		return;
+	}
+	if(status == "start") pos  = 0;
+	else if(cue.length < controller.buffer) pos = 1;  
+	else pos = cue.length - controller.buffer;
+	
+	setValues(cue[pos], true);	
+	transform.position = destination;  
 }
 
+
 function startLoop(loopStartTime){ 
-	isEnabled = true;
-	yield loadTrack(0);
+	
 	loop = false;
- 
-	if(cue.length > 0){
+	isEnabled = true;
+	
+	appendTracks();
+	
+	if(cueLength > 0){
 		pos = getLoopPosByTime(loopStartTime);
-		setValues(cue[pos]);
+		setValues(cue[pos], true);
 		transform.position = destination;
 		if(pos == 0){
 			speed = 0;
@@ -79,19 +98,20 @@ function startLoop(loopStartTime){
 	 }
 }
 
-function setValues(cuePos){
+function setValues(cuePos, reset){
 	pIndex = cuePos[0];
 	destination = teorico.vertices[pIndex];
 	
 	if(cuePos[1] > 40 ) cuePos[1] = 40;
 	if(cuePos[1] < 0 ) cuePos[1] = 10;
 	
-	speed = Mathf.Lerp(speed, cuePos[1], Time.deltaTime * 10);
+	speed = Mathf.Lerp(speed, cuePos[1], Time.deltaTime * 6);
 	
-	remainingDst = cuePos[2];
-	timeFromStart = cuePos[3];
+	if(reset){
+		remainingDst = cuePos[2];
+		timeFromStart = cuePos[3]; 
+	}
 	status = cuePos[4];
-	if(status == "ended") speed = 0;
 		
 }
 
@@ -99,69 +119,70 @@ function setValues(cuePos){
 function updatePos(){
 	if(pos < cue.length - 1){	
 		pos += 1;
-		setValues(cue[pos]);
+		setValues(cue[pos], false); 
 	}
-	else{ 
-		 if(status == "out") return; 
-		 yield loadTrack(pIndex);	
-	 }
 }
 
 
 
 function Update () {
-
-	if(status == "start"||  status == "ended" || status == "out") isEnabled = false;
 	
-	activeChildren(isEnabled);
-	
-	if(sync) synchronize();	  
-	if(loop) startLoop(loopStartTime);
-	 
 	move();
 	
-}
-
-
-function move(){
-	var step = speed * Time.deltaTime;
-	transform.position = Vector3.MoveTowards(transform.position, destination, step);
-	if(transform.position == destination) updatePos();
-	var targetDir = destination - transform.position;	
-	if(destination - transform.position != Vector3.zero)
-		carRotation = Quaternion.LookRotation(destination - transform.position);
-}
-
-
-
-function loadTrack(index){  
-	if(lastChecked + 2 > Time.time ) return;  
+	if(sync) 
+		synchronize();	  
 	
-	lastChecked = Time.time;
- 	
+	if(loop) 
+		startLoop(loopStartTime);
+	
+	
+	if(!isFinished && (lastChecked + 3  < Time.time)){ 
+		lastChecked = Time.time;  
+		appendTracks();
+	} 
+	
+	if(status == "start"||  status == "ended" || status == "out") isEnabled = false;
+	activeChildren(isEnabled);
+}
+
+
+function appendTracks(){ 
+	if(isFinished) return;
+	if(controller.state != 0 && status == "out" ) return;
+	if(controller.state != 0 && status == "start" ) return;
+	if(cue.length == 0) {
+		loadTrack(0);
+	}
+	else{
+		cuePos = cue[cue.length - 1];
+		loadTrack(cuePos[0]);
+	}
+}
+
+
+function loadTrack(index){   
+	if(isLoading) return;
+	isLoading = true;
+//	print(gameObject.name + " loading track from index " + index);
+	
 	var hostName = teorico.hostName;
 	var tramoId = teorico.tramo;
-   	if(index == 0) cue = new Array();
-   	
 	var query = hostName + "php/select.php?car="+ gameObject.name +"&tramo=" + tramoId + "&pos=" + index;
 	var hs_get = WWW(query);
  	yield hs_get; 
 
- 	if(hs_get.error) 
+ 	if(hs_get.error) {
     	print("There was an error loading... " + query);
+    	return;
+    }
 	 
     var fileContents = hs_get.text;
  	var lines = fileContents.Split("\n"[0]); 
- 	
- 	if(lines.length <= 1) 
- 		return; 
-   		 
+   	
     for (line in lines) {
-    	
     	if(line == "") break;
     	var tokens = line.Split(","[0]);
 		var pV: Array = new Array();
-		
 		pV[0] = parseInt(tokens[0]); // index
 		pV[1] = parseFloat(tokens[1]); // speed
 		pV[2] = parseInt(tokens[2]); // distance to end
@@ -170,16 +191,16 @@ function loadTrack(index){
     	status = pV[4];
     	cue.push(pV);
     }
+    
+    if(status == "ended") isFinished = true;
     cueLength = cue.length;
-       
+    isLoading = false;
 }
 
 function getLoopPosByTime(t){
 	if(t == 0) return 1;
-	if(cue.length == 0) return 0;
 	for(var n = 0; n < cue.length; n++)
 		if( cue[n][3] >= t) return n;
-	isEnabled = false;
 	return 0;
 }
 
@@ -200,4 +221,19 @@ function loadCarName(){
  	var lines = fileContents.Split("\n"[0]); 
   	carName =  lines[0];
  	
+}
+
+
+function move(){
+	var step = speed * Time.deltaTime; 
+	var prev: Vector3 =  transform.position;
+	transform.position = Vector3.MoveTowards(transform.position, destination, step); 
+	
+	remainingDst -= (Vector3.Distance(prev, transform.position)); 
+	timeFromStart += Time.deltaTime; 
+	
+	if(transform.position == destination) updatePos();
+	var targetDir = destination - transform.position;	
+	if(destination - transform.position != Vector3.zero)
+		carRotation = Quaternion.LookRotation(destination - transform.position);
 }

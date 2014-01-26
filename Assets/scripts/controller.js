@@ -7,10 +7,12 @@ private var cars;
 private var script: life;
 public var loopStartTime: int = 0;
 public var state: int = 0;
+public var buffer: int = 10;
 
 function Start () {
 	cars  = GameObject.FindGameObjectsWithTag ("car");
 	theLeader = GameObject.Find("controller").GetComponent("leader");
+	actives = new boolean[cars.length];
 }
 
 function LateUpdate () {
