@@ -6,11 +6,14 @@ private var cameraCar: GameObject;
 private var cameraTop: GameObject;
 private var cameraFollow: GameObject;
 private var cameraOrbit: GameObject;
+private var cameraBaliza: GameObject;
 
 private var cameraCar_: GameObject;
 private var cameraTop_: GameObject;
 private var cameraFollow_: GameObject;
 private var cameraOrbit_: GameObject;
+private var cameraBaliza_: GameObject;
+
 
 private var theCamera: GameObject;
 private var theCamera_: GameObject;
@@ -58,6 +61,12 @@ function Start () {
 	cameraOrbit.camera.enabled = false;
 	cameraOrbit_ = myClone(cameraOrbit);
 	cameraOrbit_.camera.enabled = false;
+	
+	
+	cameraBaliza = GameObject.Find("cameraBaliza");
+	cameraBaliza.camera.enabled = false;
+	cameraBaliza_ = myClone(cameraBaliza);
+	cameraBaliza_.camera.enabled = false;
 
 	
 	theCamera = cameraTop;
@@ -80,7 +89,8 @@ function myClone(cam:GameObject){
 }
 function Update () {
 	if(Input.GetKeyDown ("1") || Input.GetKeyDown ("2") || Input.GetKeyDown ("3") 
-		|| Input.GetKeyDown ("4") || Input.GetKeyDown ("5") || Input.GetKeyDown ("6")){
+		|| Input.GetKeyDown ("4") || Input.GetKeyDown ("5") || Input.GetKeyDown ("6")
+		|| Input.GetKeyDown ("7")){
 		
 		theCamera.camera.enabled = false;
 		theCamera_.camera.enabled = false;
@@ -105,6 +115,10 @@ function Update () {
 	if (Input.GetKeyDown ("4")){
 		theCamera = cameraOrbit;
 		theCamera_ = cameraOrbit_;
+	}
+	if (Input.GetKeyDown ("7")){
+		theCamera = cameraBaliza;
+		theCamera_ = cameraBaliza_;
 	}
 	
 	if (Input.GetKeyDown ("5") && n != -1){
@@ -131,7 +145,8 @@ function Update () {
 	
 	
 	if(Input.GetKeyDown ("1") || Input.GetKeyDown ("2") || Input.GetKeyDown ("3") 
-		|| Input.GetKeyDown ("4") || Input.GetKeyDown ("5") || Input.GetKeyDown ("6")){
+		|| Input.GetKeyDown ("4") || Input.GetKeyDown ("5") || Input.GetKeyDown ("6")
+		|| Input.GetKeyDown ("7")){
 		
 		theCamera.camera.enabled = true;
 		theCamera_.camera.enabled = true;

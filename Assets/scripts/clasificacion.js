@@ -9,6 +9,8 @@ public var isEnabled: boolean = true;
 private var ranks: Array;
 public var rankPrefab: Transform;
 public var leyenda: GUIText;
+public var isBaliza: boolean;
+public var baliza: baliza;
 
 function Start () {
  cars = GameObject.FindGameObjectsWithTag ("car");
@@ -16,6 +18,7 @@ function Start () {
  controller = GameObject.Find("controller").GetComponent("controller") as controller;
  leyenda = GameObject.Find("classification/p0/text").GetComponent("GUIText") as GUIText;  
  buildRanks();
+ baliza = GameObject.FindGameObjectWithTag("baliza").GetComponent("baliza") as baliza;  
 
 }
 function buildRanks(){
@@ -73,6 +76,10 @@ function buildClassification(){
 }
 
 function Update () {
+	if(Input.GetKeyDown ("b")) {
+		isBaliza = !isBaliza;
+		if(isBaliza) baliza.reset();
+	}
 	if(!leader) return;
 	
 	if (Input.GetKeyDown ("k")){
@@ -91,28 +98,57 @@ function Update () {
 	if( Time.time < lastPeriod + 1) return;
 	
 	lastPeriod = Time.time;
-	buildClassification();
 	disableRanks();
 	
-	if(controller.state == 0){
-		leyenda.text = "Tiempos";
+	if(isBaliza){
+		var dst = (baliza.distance/1000).ToString("F1");
+		leyenda.text = "Tiempos km: " + dst;
+		
+		displayBaliza();
+		
 	}
 	else{
-		leyenda.text = "Tiempos relativos";
-	}
-	
-	
-				
-   // Check the focus car
-	var reference = 0;
-	for(var clas in classification){
-		if(clas[0] == leader.car.name){
-			reference = clas[1];
-			break;
+		buildClassification();
+		if(controller.state == 0){
+			leyenda.text = "Tiempos";
 		}
-	}
+		else{
+			leyenda.text = "Tiempos relativos";
+		}
+		 // Check the focus car
+		var reference = 0;
+		for(var clas in classification){
+			if(clas[0] == leader.car.name){
+				reference = clas[1];
+				break;
+			}
+		}
+		displayClasificacion(reference);
 	//---- 
+	}
+}
+
+
+function displayBaliza(){
+ 	for(var i = 0; i < baliza.n; i++){
+ 		var id = baliza.clasificacion[i];
+ 		var r = getRankByName(id);
+ 		
+		if(!r) continue;
 		
+		r.active = true;
+		r.localPosition = Vector3(0, -1.05 * (i + 1), 0);
+		
+		r.Find("marca").active = false;
+		r.Find("id").guiText.text = id;
+		r.Find("name").guiText.text = (GameObject.Find(id).GetComponent("life") as life).carName;
+		r.Find("value").guiText.text = setAbsoluteTime(parseInt(baliza.tiempos[i]));
+		r.GetComponent("setTexture").setTexture("red");
+
+ 	}
+}
+
+function displayClasificacion(reference){
 	i = 1;
 	var color = "green";
 	if(controller.state == 0) color = "red";
@@ -152,10 +188,10 @@ function Update () {
 			}
 		}
 		r.GetComponent("setTexture").setTexture(color);
-		
-	
 	}
 }
+
+
 
 function setAbsoluteTime(tiempo){
 	if(tiempo % 60 < 10)
