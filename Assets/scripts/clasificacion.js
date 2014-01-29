@@ -130,16 +130,26 @@ function Update () {
 
 
 function displayBaliza(){
+<<<<<<< HEAD
 	var j = 1;
+=======
+>>>>>>> d6087e2aa17e5c119bfefc89b81faf521288327d
  	for(var i = 0; i < baliza.n; i++){
  		var id = baliza.clasificacion[i];
  		var r = getRankByName(id);
  		
 		if(!r) continue;
+<<<<<<< HEAD
 		if(!r.gameObject.renderer.isVisible) continue;
 		r.active = true;
 		r.localPosition = Vector3(0, -1.05 * (j + 1), 0);
 		j += 1;
+=======
+		
+		r.active = true;
+		r.localPosition = Vector3(0, -1.05 * (i + 1), 0);
+		
+>>>>>>> d6087e2aa17e5c119bfefc89b81faf521288327d
 		r.Find("marca").active = false;
 		r.Find("id").guiText.text = id;
 		r.Find("name").guiText.text = (GameObject.Find(id).GetComponent("life") as life).carName;
