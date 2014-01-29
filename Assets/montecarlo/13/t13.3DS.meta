@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a46c0b37c4c1940ada9ffd770814cd58
+guid: 0def2cc59420842eab1326b850235cd9
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
@@ -7,7 +7,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Terrain001
+    4300000: abajo_dcha
     9500000: //RootNode
   materials:
     importMaterials: 1

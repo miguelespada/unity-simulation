@@ -49,16 +49,16 @@ function Update(){
 function setLeader(c){
 	if(!car.active){
 		car.active = true;
-		(GameObject.Find(car.name+"/Cube").GetComponent("setMaterial") as setMaterial).setFocus(false);
+		car.transform.Find("cartelaContainer/marca").active = false;
 		car.active = false;
 	}
 	else{
-		(GameObject.Find(car.name+"/Cube").GetComponent("setMaterial") as setMaterial).setFocus(false);
-
+	
+		car.transform.Find("cartelaContainer/marca").active = false;
 	}
 	car = c;
 	leaderValue = parseInt(car.name);
-	(GameObject.Find(car.name+"/Cube").GetComponent("setMaterial") as setMaterial).setFocus(true);
+	car.transform.Find("cartelaContainer/marca").active = true;
 }
 function newLeader(k){
 	

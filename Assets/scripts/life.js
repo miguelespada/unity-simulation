@@ -151,16 +151,16 @@ function appendTracks(){
 	if(controller.state != 0 && status == "out" ) return;
 	if(controller.state != 0 && status == "start" ) return;
 	if(cue.length == 0) {
-		loadTrack(0);
+		loadTrack(0, false);
 	}
 	else{
 		cuePos = cue[cue.length - 1];
-		loadTrack(cuePos[0]);
+		loadTrack(cuePos[0], true);
 	}
 }
 
 
-function loadTrack(index){   
+function loadTrack(index, aSync){   
 	if(isLoading) return;
 	isLoading = true;
 //	print(gameObject.name + " loading track from index " + index);
@@ -169,7 +169,12 @@ function loadTrack(index){
 	var tramoId = teorico.tramo;
 	var query = hostName + "php/select.php?car="+ gameObject.name +"&tramo=" + tramoId + "&pos=" + index;
 	var hs_get = WWW(query);
- 	yield hs_get; 
+ 	if(aSync) yield hs_get; 
+ 	else{
+ 		while(!hs_get.isDone){
+ 			yield WaitForSeconds(0.5);
+ 		}
+ 	}
 
  	if(hs_get.error) {
     	print("There was an error loading... " + query);
@@ -233,7 +238,7 @@ function move(){
 	timeFromStart += Time.deltaTime; 
 	
 	if(transform.position == destination) updatePos();
-	var targetDir = destination - transform.position;	
-	if(destination - transform.position != Vector3.zero)
+		var targetDir = destination - transform.position;	
+		if(destination - transform.position != Vector3.zero)
 		carRotation = Quaternion.LookRotation(destination - transform.position);
 }

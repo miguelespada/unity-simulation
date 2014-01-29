@@ -20,7 +20,8 @@ function LateUpdate () {
 			transform.localScale *= 0.9;
 		}
 	}
-	if(theCamera.theCamera.name == "cameraCar" || theCamera.theCamera.name == "cameraTop"){
+	if(theCamera.theCamera.name == "cameraCar" || theCamera.theCamera.name == "cameraTop"
+	|| theCamera.theCamera.name == "cameraBaliza"){
 			transform.rotation = Quaternion.LookRotation(Vector3.up);	
 			return;
 	}
